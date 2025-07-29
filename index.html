@@ -1,29 +1,440 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>My Tech Blog</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M4r104lb4</title>
+    <link rel="icon" href="https://www.flaticon.es/icono-gratis/mario_3565063.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --background-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --link-color: #00bcd4;
+            --link-hover-color: #00e5ff;
+            --sidebar-bg: #222222;
+            --header-bg: #2c2c2c;
+            --border-color: #444444;
+            --card-bg: #2b2b2b;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            padding: 30px 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--link-color);
+        }
+
+        .site-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--link-color);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .tagline {
+            font-size: 1em;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .sidebar-links {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-links a {
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-links a:hover {
+            color: var(--link-color);
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 280px);
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: var(--link-color);
+            color: var(--sidebar-bg);
+        }
+
+        .body-content {
+            padding: 0 30px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .welcome-section h1 {
+            font-size: 2.8em;
+            color: var(--link-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .welcome-section p {
+            font-size: 1.3em;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--link-color);
+            border-radius: 2px;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-title {
+            font-size: 1.5em;
+            color: var(--link-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .post-excerpt {
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 250px;
+                padding: 20px 15px;
+            }
+            .main-content {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+            }
+            .site-title {
+                font-size: 2em;
+            }
+            .tagline {
+                font-size: 0.9em;
+            }
+            .nav-menu {
+                gap: 15px;
+            }
+            .nav-menu a {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+            .welcome-section h1 {
+                font-size: 2.2em;
+            }
+            .welcome-section p {
+                font-size: 1.1em;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 15px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                border-bottom: 1px solid var(--border-color);
+            }
+            .sidebar .logo, .sidebar .site-title, .sidebar .tagline, .sidebar .sidebar-links {
+                display: none;
+            }
+            .sidebar .logo-mobile {
+                display: block; /* Show a smaller logo for mobile */
+            }
+            .logo-mobile img {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 2px solid var(--link-color);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 20px;
+            }
+            .header {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                padding: 10px 15px;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .body-content {
+                padding: 0 15px;
+            }
+            .welcome-section {
+                padding: 20px;
+            }
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 10px 0;
+            }
+            .logo-mobile img {
+                width: 50px;
+                height: 50px;
+            }
+            .nav-menu a {
+                font-size: 0.9em;
+                padding: 5px 10px;
+            }
+            .welcome-section h1 {
+                font-size: 1.8em;
+            }
+            .welcome-section p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+            .post-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="nav-left">
-        <a href="index.html">Malware and Reversing</a>
-        <a href="hardware.html">Hardware Hacking</a>
-        <a href="satellite.html">Satellite Hacking</a>
-        <a href="hobbies.html">Hobbies</a>
-      </div>
-		<div class="social-bar">
-		  <a href="https://github.com/tu-usuario" target="_blank"><i class="fab fa-github"></i></a>
-		  <a href="https://linkedin.com/in/tu-usuario" target="_blank"><i class="fab fa-linkedin"></i></a>
-		</div>
-    </nav>
-  </header>
-  <main>
-    <h1>Welcome</h1>
-    <p>Explore my research and Hobbies.</p>
-  </main>
+    <aside class="sidebar">
+        <div class="logo logo-mobile" style="display: none;">
+            <img src="D:\BLOG\Logo_Gemini.png" alt="M4r104lb4 Logo">
+        </div>
+        <div class="logo logo-desktop">
+            <img src="D:\BLOG\Logo_Gemini.png" alt="M4r104lb4 Logo">
+        </div>
+        <h1 class="site-title">Mario Alba</h1>
+        <div class="tagline">
+            <br>
+            Incident Response & Reverse engineering & Research
+        </div>
+        <div class="sidebar-links">
+            <a href="https://www.linkedin.com/in/marioandresalbagarcia/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/M4R104LB4" target="_blank">GitHub</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <nav class="nav-menu">
+                <a href="#malware-reversing">Malware and Reversing</a>
+                <a href="#hardware-hacking">Hardware Hacking</a>
+                <a href="#satellite-hacking">Satellite Hacking</a>
+                <a href="#hobbies">Hobbies</a>
+            </nav>
+        </header>
+
+        <section class="body-content">
+            <div class="welcome-section">
+                <h1>Welcome.</h1>
+                <p>Explore my research and Hobbies</p>
+            </div>
+
+            <h2 class="section-title">My Recent Blogs</h2>
+
+            <div class="posts-grid">
+                <article class="post-card">
+                    <img src="https://via.placeholder.com/400x200?text=Malware+Analysis" alt="Imagen del Post 1">
+                    <div class="post-content">
+                        <h3 class="post-title">Análisis de Malware: Primeros Pasos</h3>
+                        <p class="post-date">25 de Julio, 2025</p>
+                        <p class="post-excerpt">Una introducción a las técnicas básicas de análisis de malware y herramientas esenciales para comenzar en este campo.</p>
+                        <a href="#" class="read-more">Leer más &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <img src="https://via.placeholder.com/400x200?text=Hardware+Exploration" alt="Imagen del Post 2">
+                    <div class="post-content">
+                        <h3 class="post-title">Desarrollando con ESP32: Proyecto de Domótica</h3>
+                        <p class="post-date">18 de Julio, 2025</p>
+                        <p class="post-excerpt">Explorando las capacidades del ESP32 para construir un sistema de automatización del hogar inteligente.</p>
+                        <a href="#" class="read-more">Leer más &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <img src="https://via.placeholder.com/400x200?text=Satellite+Comm" alt="Imagen del Post 3">
+                    <div class="post-content">
+                        <h3 class="post-title">Introducción a la Comunicación Satelital con SDR</h3>
+                        <p class="post-date">10 de Julio, 2025</p>
+                        <p class="post-excerpt">Una guía para entender cómo los radios definidos por software (SDR) pueden interactuar con satélites.</p>
+                        <a href="#" class="read-more">Leer más &rarr;</a>
+                    </div>
+                </article>
+
+                 <article class="post-card">
+                    <img src="https://via.placeholder.com/400x200?text=Retro+Gaming" alt="Imagen del Post 4">
+                    <div class="post-content">
+                        <h3 class="post-title">Mi Colección de Consolas Retro</h3>
+                        <p class="post-date">01 de Julio, 2025</p>
+                        <p class="post-excerpt">Un vistazo a mi pasión por los videojuegos clásicos y las consolas que marcaron una era.</p>
+                        <a href="#" class="read-more">Leer más &rarr;</a>
+                    </div>
+                </article>
+
+                </div>
+        </section>
+    </main>
 </body>
 </html>
