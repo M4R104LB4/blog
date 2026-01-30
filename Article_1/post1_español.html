@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +10,7 @@
 
   <!-- SEO básico -->
   <meta name="description" content="<!-- TODO: resumen breve 150-160 caracteres -->"/>
-  <meta name="author" content="Mario Alba"/>
+  <meta name="author" content="Mario Andrés Alba García"/>
 
   <!-- Reutiliza exactamente los mismos estilos que tu index -->
   <!-- TODO: Cambia la ruta al CSS de tu index si es distinta -->
@@ -72,34 +73,115 @@
       <section class="post-body">
 
         <h2>Introducción</h2>
-        <p><!-- TODO: tu texto -->Este artículo…</p>
-
-        <figure>
-          <!-- TODO: /blog/assets/img/ejemplo.png -->
-          <img src="/blog/assets/img/ejemplo.png" alt="Ilustración" loading="lazy">
-          <figcaption>Figura 1 — <!-- TODO: pie de imagen --></figcaption>
+        <p>Inicio este POST hablando del fracaso. Quise preparar para el BSIDES un dispositivo compacto y portable hecho con una raspberry pi como base, incluyendo una pantalla LCD pequeña. Sin embargo, tras notar que el procesamiento se subía hasta las nubes y que el dispositivo no tenía el rendimiento suficiente para afrontar un reto de Wardriving he decididoabandonar esta idea. Aunque dediqué mucho tiempo allí, al final, me dejó grandes aprendizajes y una gran satisfacción de haber hecho funcionar la pantalla, aunque genere algo de inestabilidad en el sistema.
+		</p>
+		
+		<p>Así las cosas y sin querer rendirme, he optado por tomar de base una Hack5 MARK VII. Aquí va un poco la configuración que realicé.
+		</p>
+		
+		<p>Para iniciar me he visto todos los videos de este personaje de Hak5, que han sido una base para lo que estaba buscando.</p>
+		
+		<figure>
+          <img src="https://m4r104lb4.github.io/blog/Article_1/w1.jpg" alt="Ilustración" loading="lazy">
+          <figcaption>Figura 1 — El tipo de Hak5</figcaption>
         </figure>
 
-        <h2>Sección</h2>
-        <p>Contenido, <code>código en línea</code>, listas, etc.</p>
+        <h2>INSTALACIÓN DE GPS</h2>
+        <p>El módulo de GPS que usé es el que se ha recomendado en alguno de estos videos, un G-MOUSE VK-172.
 
-        <pre><code># bash
-nmap -sV -Pn -p- 10.10.10.10
+Para realizar la instalación he ejecutado estos comandos del sistema operativo de la Mark VII (OpenWRT). </p>
+<pre><code>opkg update
+opkg install gpsd gpsd-clients</code></pre>
+
+<p>Una vez ejecutados he verificado que el módulo estaba enviando data correctamente con los siguientes comandos:</p>
+
+<pre><code>dmesg | grep ttyACM0 
+cat /dev/ttyACM0</code></pre>
+
+<p>El comando que sigue a continuación se hace necesario por el tipo de GPS que uso, Kismet no soporta formato binario de datos enviado por el VK-172, sino el estándar NMEA, por eso, se requiere ejecutar lo siguiente:</p>
+
+<pre><code>gpsd /dev/ttyACM0</code></pre>
+
+<p>Finalmente, he verificado que el GPS esté recibiendo señal de algún satélite correctamente con el siguiente comando:</p>
+
+<pre><code>cgps</code></pre>
+
+		<h2>MODIFICACIÓN DEL HUB USB PARA ALIMENTARLO CON BATERÍA</h2>
+		<p>Aquí encontré el primer problema. El solo módulo de GPS consumía mucha corriente. Así fue como decidí usar una regleta económica que tenía y le he adaptado un conector usb soldándolo directamente en el PCB y uniéndolo al conector DC que traía originalmente, para lograr alimentarlo de una batería externa. Se que hay soluciones más elegantes pero era lo que tenía a la mano.</p>
+		
+
+		<figure>
+		  <!-- Ajusta la ruta a tu carpeta de assets -->
+		  <img
+			src="https://m4r104lb4.github.io/blog/Article_1/w2.jpg"
+			alt="hub1"
+			loading="lazy"             <!-- difiere la carga fuera de pantalla -->
+			decoding="async"           <!-- decodifica sin bloquear render -->
+			width="2400" height="1600" <!-- dimensiones reales del archivo -->
+			style="aspect-ratio: 3 / 2;"  <!-- ayuda a reservar espacio y evita salto de layout -->
+		  />
+		  <figcaption>Figura 2 — Vista superior del hub</figcaption>
+		</figure>
+
+		<figure>
+		  <!-- Ajusta la ruta a tu carpeta de assets -->
+		  <img
+			src="https://m4r104lb4.github.io/blog/Article_1/w3.jpg"
+			alt="hub2"
+			loading="lazy"             <!-- difiere la carga fuera de pantalla -->
+			decoding="async"           <!-- decodifica sin bloquear render -->
+			width="2400" height="1600" <!-- dimensiones reales del archivo -->
+			style="aspect-ratio: 3 / 2;"  <!-- ayuda a reservar espacio y evita salto de layout -->
+		  />
+		  <figcaption>Figura 3 — Soldando el cable USB</figcaption>
+		</figure>
+		
+		<h2>INSTALACIÓN DE LA TARJETA ALFA</h2>
+		
+		<p>Una vez resuelto el tema del GPS me concentré en mi siguiente objetivo, configurar la tarjeta de red ALFA. Para ello he ejecutado el siguiente comando que me ha recomendado la IA y ha funcionado bien.</p>
+		<pre><code>opkg install kmod-rtl8812au-ct</code></pre>
+		<p>Finalmente para lograr que la ALFA quede en modo monitor he ejecutado los siguientes comandos:
+</p>
+		<pre><code>wifi down
+ip link set wlan3 down
+iw wlan3 set monitor control
+ip link set wlan3 up
+</code></pre>
+		<p>Y para asegurarme de que todo iba bien y que la alfa si iba en la banda de los 5 Ghz ejecuté los siguiente:
+</p>
+        <pre><code>iw dev
+iw list
 </code></pre>
 
-        <h2>Conclusión</h2>
-        <ul>
-          <li><!-- TODO: punto clave --></li>
-          <li><!-- TODO: punto clave --></li>
-        </ul>
+		<h2>CONFIGURACIÓN DE KISMET</h2>
+		
+		<p>Ahora era el momento de kismet. Esta página ya la conocía del Wardriving del 2025 y me pareció muy buena así que la dejo por aquí, es un colega argentino que ha dejado allí la configuración.</p>
+		<p>https://www.tdtlatinoamerica.com.ar/forotdt/viewtopic.php?t=3359</p>
+		<p>Para instalar los paquetes de kismet he ejecutado:</p>
+		<pre><code>opkg install kismet kismet-capture-linux-wifi</code></pre>
+		<p>Así mismo, he realizado un par de configuraciones apoyado en la página de tdlatinoamérica y en alguna IA a la que consulté.</p>
+		<pre><code>gps=gpsd:host=localhost,port=2947
 
-      </section>
+source=wlan1:type=linuxwifi,name=MARK7,hop=true,band=abg
+source=wlan3:type=linuxwifi,name=ALFA,hop=true,band=abg</code></pre>
+		<p>Para ejecutarlo usé el comando "kismet &" para que quedara en background el proceso porque todo lo hice desde la interfaz web y bueno, la idea es que sea persistente. Entiendo que existe alguna flag para ejecutarlo daemonizado pero esto ya lo probaré en la fase de pruebas.</p>
+		<p>Me queda pendiente usar el script del compadre luisco para poder arranzar en el inicio un script de configuración que se pierde al reiniciar el MARK VII.</p>
+		<p>https://github.com/luisco/wardriving-pi5</p>
+		<h2>HARDWARE</h2>
+		<h3>Listado de componentes</h2>
+		<p>	• Tarjeta WIFI AWUS036ACH</p>
+<p>	• WiFi Pineapple Mark VII</p>
+<p>	• Hub USB</p>
+<p>	• Módulo GPS G-MOUSE VK-172</p>
+<p>	• Batería de 10000 Mah</p>
 
       <!-- Etiquetas (opcional) -->
       <div class="tags" aria-label="Etiquetas">
-        <span class="tag">DFIR</span>
-        <span class="tag">Malware</span>
-        <span class="tag">Reversing</span>
+        <span class="tag">WIFI HACKING</span>
+        <span class="tag">WARDRIVING</span>
+        <span class="tag">ALFA</span>
+		<span class="tag">HAK5</span>
+		<span class="tag">Kismet</span>
       </div>
 
       <!-- Navegación simple -->
@@ -113,7 +195,7 @@ nmap -sV -Pn -p- 10.10.10.10
   </main>
 
   <footer class="site-footer">
-    <!-- TODO: pega tu footer del index o mantenlo simple -->
+
   </footer>
 
 </body>
