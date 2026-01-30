@@ -9,38 +9,128 @@
   <title><!-- TODO: Título del artículo --> | Blog de Mario</title>
 
   <!-- SEO básico -->
-  <meta name="description" content="<!-- TODO: resumen breve 150-160 caracteres -->"/>
+  <meta name="description" content="Setup de Wardriving para BSIDES Colombia en 2026"/>
   <meta name="author" content="Mario Andrés Alba García"/>
 
-  <!-- Reutiliza exactamente los mismos estilos que tu index -->
-  <!-- TODO: Cambia la ruta al CSS de tu index si es distinta -->
-  <link rel="stylesheet" href="/blog/assets/css/main.css"/>
+  
+<style>
+  /* === Variables de color y escala (ajústalas si quieres) === */
+  :root{
+    --bg: #0b1020;         /* fondo general (oscuro suave) */
+    --surface: #0f172a;    /* superficie principal (tarjeta) */
+    --surface-2: #0b1224;  /* superficie secundaria (footer/paginación) */
+    --text: #e5e7eb;       /* texto principal */
+    --text-soft:#cbd5e1;   /* texto secundario */
+    --muted:#94a3b8;       /* meta/pies de foto */
+    --border:#1f2937;      /* bordes */
+    --link:#22d3ee;        /* enlaces/acento */
+    --code-bg:#0a0f1c;     /* fondo de bloques de código */
+    --radius:14px;         /* radio de bordes */
+    --max-w: 860px;        /* ancho del contenedor */
+  }
 
-  <!-- (Opcional) estilos mínimos por si te faltan utilidades para la maquetación del post -->
-  <style>
-    /* Mantiene el look del index usando tus variables/escala;
-       solo define contenedor y elementos del artículo si tu CSS no los trae */
-    .container { max-width: 860px; margin: 0 auto; padding: 24px; }
-    .post { background: var(--surface, #fff); border-radius: 12px; border: 1px solid var(--border, #e5e7eb); overflow: hidden; }
-    .post-header { padding: 18px 20px 8px; }
-    .post-meta { color: var(--muted, #6b7280); font-size: 0.95rem; margin-top: 6px; }
-    .post-cover img { width: 100%; height: 320px; object-fit: cover; display: block; }
-    .post-summary { color: var(--text-soft, #374151); margin: 10px 20px 0; font-size: 1.05rem; }
-    .post-body { padding: 16px 20px 24px; line-height: 1.75; }
-    .post-body img { border-radius: 10px; }
-    figure { margin: 18px 0; }
-    figcaption { font-size: .9rem; color: var(--muted, #6b7280); margin-top: 6px; }
-    pre { background: var(--code-bg, #0f172a0d); border: 1px solid var(--border, #e5e7eb); padding: 14px; border-radius: 10px; overflow: auto; }
-    code { background: var(--code-chip-bg, #eef2f7); padding: .15em .35em; border-radius: 6px; }
-    .tags { display:flex; flex-wrap:wrap; gap:8px; padding: 0 20px 14px; }
-    .tag { font-size:.85rem; padding:6px 10px; border-radius:999px; background: var(--chip-bg, #f3f4f6); border: 1px solid var(--border, #e5e7eb); }
-    .post-footer { display:flex; justify-content:space-between; gap:12px; padding: 14px 20px; border-top: 1px solid var(--border, #e5e7eb); background: var(--surface-2, #fafafa); }
-    .post-footer a { display:block; padding:8px 12px; border:1px solid var(--border, #e5e7eb); border-radius:10px; }
-    /* Ajustes responsive mínimos */
-    @media (max-width:640px){
-      .post-cover img { height: 220px; }
-    }
-  </style>
+  /* === Reset mínimo y tipografía === */
+  *{box-sizing:border-box}
+  html,body{
+    margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family: Inter, system-ui,-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:var(--link); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* === Estructura general === */
+  .container{ max-width:var(--max-w); margin:0 auto; padding:24px }
+  .post{
+    background: var(--surface); border:1px solid var(--border);
+    border-radius: var(--radius); overflow:hidden;
+    background-image:
+      linear-gradient(180deg, rgba(34,211,238,.06), transparent 180px),
+      linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
+  }
+
+  /* === Portada (hero) === */
+  .post-cover{
+    overflow:hidden;
+    height: clamp(200px, 36vw, 360px);
+    background: var(--surface-2);
+  }
+  .post-cover img{
+    width:100%; height:100%;
+    object-fit: cover;       /* recorta suavemente, no deforma */
+    object-position: center; /* enfoca el centro */
+    display:block;
+  }
+  /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
+  .post-cover.contain img { object-fit: contain; background:transparent }
+
+  /* === Cabecera del post === */
+  .post-header{ padding:18px 20px 8px }
+  .post-header h1{
+    margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
+  }
+  .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
+  .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
+
+  /* === Cuerpo del post === */
+  .post-body{ padding:16px 20px 24px }
+  .post-body p{ margin:.9em 0 }
+  .post-body h2{ margin-top:28px; font-size:1.45rem }
+  .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
+
+  /* === Imágenes responsivas y figuras === */
+  .post-body img,
+  figure img{
+    max-width:100%;
+    height:auto;            /* mantiene proporción */
+    display:block;
+  }
+  /* limitar imágenes grandes dentro del texto */
+  .post-body img{
+    max-width: min(100%, 780px);
+    margin: 12px auto;
+    border-radius: 10px;
+  }
+  figure{ margin:18px 0 }
+  figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
+
+  /* Imagen a ancho completo del contenedor del artículo */
+  figure.bleed img{ width:100%; max-width:100% }
+
+  /* === Código === */
+  pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
+  pre{
+    background:var(--code-bg); border:1px solid var(--border);
+    padding:14px; border-radius:10px; overflow:auto; margin:18px 0
+  }
+  code{ background: rgba(148,163,184,.15); padding:.15em .35em; border-radius:6px }
+
+  /* === Etiquetas y pie de navegación === */
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; padding: 0 20px 14px }
+  .tag{
+    font-size:.85rem; color:#0c111b; background:linear-gradient(90deg,#67e8f9,#a78bfa);
+    padding:6px 10px; border-radius:999px
+  }
+  .post-footer{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:14px 20px; border-top:1px solid var(--border); background:var(--surface-2)
+  }
+  .post-footer a{
+    display:block; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:#0a0f1c
+  }
+
+  /* === Tablas (opcionales) === */
+  table{ width:100%; border-collapse:collapse; margin:16px 0; border:1px solid var(--border) }
+  th, td{ border-bottom:1px solid var(--border); padding:10px 12px; text-align:left }
+  th{ background:#0c1428 }
+
+  /* === Accesibilidad y responsive === */
+  :focus-visible{ outline:3px solid #93c5fd; outline-offset:2px }
+  @media (max-width:640px){
+    .post-cover{ height:220px }
+  }
+</style>
+
 </head>
 <body>
 
@@ -55,7 +145,7 @@
       <!-- Portada (opcional) -->
       <div class="post-cover">
         <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
-        <img src="/blog/assets/portadas/mi-portada.jpg" alt="Portada del artículo" loading="lazy">
+        <img src="https://m4r104lb4.github.io/blog/Article_1/w4.jpg" alt="Portada del artículo" loading="lazy">
       </div>
 
       <!-- Encabezado del post -->
@@ -64,7 +154,7 @@
         <div class="post-meta">
           Por <strong>Mario Alba</strong> ·
           <time datetime="2026-01-30"><!-- TODO: fecha legible -->30 enero 2026</time> ·
-          <!-- TODO: lectura opcional -->~6 min lectura
+          <!-- TODO: lectura opcional -->~20 min lectura
         </div>
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
@@ -73,17 +163,17 @@
       <section class="post-body">
 
         <h2>Introducción</h2>
-        <p>Inicio este POST hablando del fracaso. Quise preparar para el BSIDES un dispositivo compacto y portable hecho con una raspberry pi como base, incluyendo una pantalla LCD pequeña. Sin embargo, tras notar que el procesamiento se subía hasta las nubes y que el dispositivo no tenía el rendimiento suficiente para afrontar un reto de Wardriving he decididoabandonar esta idea. Aunque dediqué mucho tiempo allí, al final, me dejó grandes aprendizajes y una gran satisfacción de haber hecho funcionar la pantalla, aunque genere algo de inestabilidad en el sistema.
+        <p>Inicio este POST hablando del fracaso. Quise preparar para el BSIDES un dispositivo compacto y portable hecho con una raspberry pi como base, incluyendo una pantalla LCD pequeña. Sin embargo, tras notar que el procesamiento se subía hasta las nubes y que el dispositivo no tenía el rendimiento suficiente para afrontar un reto de Wardriving he decidido abandonar esta idea. Aunque dediqué mucho tiempo allí, al final, me dejó grandes aprendizajes y una gran satisfacción de haber hecho funcionar la pantalla, aunque genere algo de inestabilidad en el sistema.
 		</p>
 		
-		<p>Así las cosas y sin querer rendirme, he optado por tomar de base una Hack5 MARK VII. Aquí va un poco la configuración que realicé.
+		<p>Así las cosas, he optado por tomar de base una Hack5 MARK VII. Aquí va un poco la configuración que realicé.
 		</p>
 		
 		<p>Para iniciar me he visto todos los videos de este personaje de Hak5, que han sido una base para lo que estaba buscando.</p>
 		
 		<figure>
           <img src="https://m4r104lb4.github.io/blog/Article_1/w1.jpg" alt="Ilustración" loading="lazy">
-          <figcaption>Figura 1 — El tipo de Hak5</figcaption>
+          <figcaption>Figura 1 — El tipo de Hak5.</figcaption>
         </figure>
 
         <h2>INSTALACIÓN DE GPS</h2>
@@ -106,39 +196,22 @@ cat /dev/ttyACM0</code></pre>
 
 <pre><code>cgps</code></pre>
 
-		<h2>MODIFICACIÓN DEL HUB USB PARA ALIMENTARLO CON BATERÍA</h2>
-		<p>Aquí encontré el primer problema. El solo módulo de GPS consumía mucha corriente. Así fue como decidí usar una regleta económica que tenía y le he adaptado un conector usb soldándolo directamente en el PCB y uniéndolo al conector DC que traía originalmente, para lograr alimentarlo de una batería externa. Se que hay soluciones más elegantes pero era lo que tenía a la mano.</p>
+		<h2>MODIFICACIÓN DEL HUB USB PARA ALIMENTARLO CON BATERÍA USB</h2>
+		<p>Aquí encontré el primer problema. El solo módulo de GPS consumía mucha corriente. Así fue como decidí usar una regleta económica que tenía. La modificación consistió en adaptar un conector USB soldándolo directamente en el PCB y uniéndolo al conector DC que traía originalmente, para lograr alimentarlo de una batería externa. Se que hay soluciones más elegantes pero era lo que tenía a la mano.</p>
 		
 
 		<figure>
-		  <!-- Ajusta la ruta a tu carpeta de assets -->
-		  <img
-			src="https://m4r104lb4.github.io/blog/Article_1/w2.jpg"
-			alt="hub1"
-			loading="lazy"             <!-- difiere la carga fuera de pantalla -->
-			decoding="async"           <!-- decodifica sin bloquear render -->
-			width="2400" height="1600" <!-- dimensiones reales del archivo -->
-			style="aspect-ratio: 3 / 2;"  <!-- ayuda a reservar espacio y evita salto de layout -->
-		  />
-		  <figcaption>Figura 2 — Vista superior del hub</figcaption>
+		  <img src="https://m4r104lb4.github.io/blog/Article_1/w2.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figura 2 — Vista superior del hub.</figcaption>
 		</figure>
 
 		<figure>
-		  <!-- Ajusta la ruta a tu carpeta de assets -->
-		  <img
-			src="https://m4r104lb4.github.io/blog/Article_1/w3.jpg"
-			alt="hub2"
-			loading="lazy"             <!-- difiere la carga fuera de pantalla -->
-			decoding="async"           <!-- decodifica sin bloquear render -->
-			width="2400" height="1600" <!-- dimensiones reales del archivo -->
-			style="aspect-ratio: 3 / 2;"  <!-- ayuda a reservar espacio y evita salto de layout -->
-		  />
-		  <figcaption>Figura 3 — Soldando el cable USB</figcaption>
+		  <img src="https://m4r104lb4.github.io/blog/Article_1/w3.jpg" alt="Ilustración" loading="lazy">		  <figcaption>Figura 3 — Soldando el cable USB.</figcaption>
 		</figure>
 		
 		<h2>INSTALACIÓN DE LA TARJETA ALFA</h2>
 		
-		<p>Una vez resuelto el tema del GPS me concentré en mi siguiente objetivo, configurar la tarjeta de red ALFA. Para ello he ejecutado el siguiente comando que me ha recomendado la IA y ha funcionado bien.</p>
+		<p>Una vez resuelto el tema del GPS y la alimentación del HUB USB me concentré en mi siguiente objetivo, configurar la tarjeta de red ALFA. Para ello he ejecutado el siguiente comando que me ha recomendado la IA y ha funcionado bien.</p>
 		<pre><code>opkg install kmod-rtl8812au-ct</code></pre>
 		<p>Finalmente para lograr que la ALFA quede en modo monitor he ejecutado los siguientes comandos:
 </p>
@@ -147,7 +220,7 @@ ip link set wlan3 down
 iw wlan3 set monitor control
 ip link set wlan3 up
 </code></pre>
-		<p>Y para asegurarme de que todo iba bien y que la alfa si iba en la banda de los 5 Ghz ejecuté los siguiente:
+		<p>Y para asegurarme de que todo iba bien y que la ALFA si iba en la banda de los 5 Ghz ejecuté los siguiente:
 </p>
         <pre><code>iw dev
 iw list
@@ -155,8 +228,8 @@ iw list
 
 		<h2>CONFIGURACIÓN DE KISMET</h2>
 		
-		<p>Ahora era el momento de kismet. Esta página ya la conocía del Wardriving del 2025 y me pareció muy buena así que la dejo por aquí, es un colega argentino que ha dejado allí la configuración.</p>
-		<p>https://www.tdtlatinoamerica.com.ar/forotdt/viewtopic.php?t=3359</p>
+		<p>Ahora era el momento de kismet. Esta página ya la conocía del Wardriving del 2025 y me pareció muy buena así que la dejo por aquí, es un colega argentino que ha dejado allí los comandos de configuración de Kismet y además un video explicativo que me fue de bastante ayuda el año pasado.</p>
+		<a>https://www.tdtlatinoamerica.com.ar/forotdt/viewtopic.php?t=3359</a>
 		<p>Para instalar los paquetes de kismet he ejecutado:</p>
 		<pre><code>opkg install kismet kismet-capture-linux-wifi</code></pre>
 		<p>Así mismo, he realizado un par de configuraciones apoyado en la página de tdlatinoamérica y en alguna IA a la que consulté.</p>
@@ -166,7 +239,7 @@ source=wlan1:type=linuxwifi,name=MARK7,hop=true,band=abg
 source=wlan3:type=linuxwifi,name=ALFA,hop=true,band=abg</code></pre>
 		<p>Para ejecutarlo usé el comando "kismet &" para que quedara en background el proceso porque todo lo hice desde la interfaz web y bueno, la idea es que sea persistente. Entiendo que existe alguna flag para ejecutarlo daemonizado pero esto ya lo probaré en la fase de pruebas.</p>
 		<p>Me queda pendiente usar el script del compadre luisco para poder arranzar en el inicio un script de configuración que se pierde al reiniciar el MARK VII.</p>
-		<p>https://github.com/luisco/wardriving-pi5</p>
+		<a>https://github.com/luisco/wardriving-pi5</a>
 		<h2>HARDWARE</h2>
 		<h3>Listado de componentes</h2>
 		<p>	• Tarjeta WIFI AWUS036ACH</p>
@@ -174,6 +247,10 @@ source=wlan3:type=linuxwifi,name=ALFA,hop=true,band=abg</code></pre>
 <p>	• Hub USB</p>
 <p>	• Módulo GPS G-MOUSE VK-172</p>
 <p>	• Batería de 10000 Mah</p>
+
+	  <figure>
+		  <img src="https://m4r104lb4.github.io/blog/Article_1/w4.jpg" alt="Ilustración" loading="lazy">		  <figcaption>Figura 4 — Setup Definitivo.</figcaption>
+		</figure>
 
       <!-- Etiquetas (opcional) -->
       <div class="tags" aria-label="Etiquetas">
@@ -183,7 +260,6 @@ source=wlan3:type=linuxwifi,name=ALFA,hop=true,band=abg</code></pre>
 		<span class="tag">HAK5</span>
 		<span class="tag">Kismet</span>
       </div>
-
       <!-- Navegación simple -->
       <nav class="post-footer">
         <!-- TODO: actualiza rutas -->
