@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+	
+  <title> | Blog de Mario</title>
 
-  <!-- Título del navegador -->
-  <title><!-- TODO: Título del artículo --> | Blog de Mario</title>
-
-  <!-- SEO básico -->
   <meta name="description" content="Setup de Wardriving para BSIDES Colombia en 2026"/>
   <meta name="author" content="Mario Alba"/>
 
@@ -28,7 +26,7 @@
     --max-w: 860px;        /* ancho del contenedor */
   }
 
-  /* === Reset mínimo y tipografía === */
+
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0; background:var(--bg); color:var(--text);
@@ -38,7 +36,7 @@
   a{color:var(--link); text-decoration:none}
   a:hover{text-decoration:underline}
 
-  /* === Estructura general === */
+
   .container{ max-width:var(--max-w); margin:0 auto; padding:24px }
   .post{
     background: var(--surface); border:1px solid var(--border);
@@ -48,7 +46,7 @@
       linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
   }
 
-  /* === Portada (hero) === */
+ 
   .post-cover{
     overflow:hidden;
     height: clamp(200px, 36vw, 360px);
@@ -56,14 +54,14 @@
   }
   .post-cover img{
     width:100%; height:100%;
-    object-fit: cover;       /* recorta suavemente, no deforma */
-    object-position: center; /* enfoca el centro */
+    object-fit: cover;      
+    object-position: center; 
     display:block;
   }
-  /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
+ 
   .post-cover.contain img { object-fit: contain; background:transparent }
 
-  /* === Cabecera del post === */
+  
   .post-header{ padding:18px 20px 8px }
   .post-header h1{
     margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
@@ -71,20 +69,20 @@
   .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
   .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
 
-  /* === Cuerpo del post === */
+ 
   .post-body{ padding:16px 20px 24px }
   .post-body p{ margin:.9em 0 }
   .post-body h2{ margin-top:28px; font-size:1.45rem }
   .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
 
-  /* === Imágenes responsivas y figuras === */
+
   .post-body img,
   figure img{
     max-width:100%;
-    height:auto;            /* mantiene proporción */
+    height:auto;            
     display:block;
   }
-  /* limitar imágenes grandes dentro del texto */
+
   .post-body img{
     max-width: min(100%, 780px);
     margin: 12px auto;
@@ -93,10 +91,10 @@
   figure{ margin:18px 0 }
   figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
 
-  /* Imagen a ancho completo del contenedor del artículo */
+ 
   figure.bleed img{ width:100%; max-width:100% }
 
-  /* === Código === */
+ 
   pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
   pre{
     background:var(--code-bg); border:1px solid var(--border);
@@ -104,7 +102,7 @@
   }
   code{ background: rgba(148,163,184,.15); padding:.15em .35em; border-radius:6px }
 
-  /* === Etiquetas y pie de navegación === */
+
   .tags{ display:flex; flex-wrap:wrap; gap:8px; padding: 0 20px 14px }
   .tag{
     font-size:.85rem; color:#0c111b; background:linear-gradient(90deg,#67e8f9,#a78bfa);
@@ -118,12 +116,12 @@
     display:block; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:#0a0f1c
   }
 
-  /* === Tablas (opcionales) === */
+
   table{ width:100%; border-collapse:collapse; margin:16px 0; border:1px solid var(--border) }
   th, td{ border-bottom:1px solid var(--border); padding:10px 12px; text-align:left }
   th{ background:#0c1428 }
 
-  /* === Accesibilidad y responsive === */
+
   :focus-visible{ outline:3px solid #93c5fd; outline-offset:2px }
   @media (max-width:640px){
     .post-cover{ height:220px }
@@ -133,23 +131,21 @@
 </head>
 <body>
 
-  <!-- Reutiliza tu mismo header/nav del index si lo tienes como include o copia y pega -->
+ 
   <header class="site-header">
-    <!-- TODO: pega aquí el header/nav del index si no se inyecta automáticamente -->
+
   </header>
 
   <main class="container">
     <article class="post">
 
-      <!-- Portada (opcional) -->
+
       <div class="post-cover">
-        <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
         <img src="https://m4r104lb4.github.io/blog/es/Portada.png" alt="Portada del artículo" loading="lazy">
       </div>
 
-      <!-- Encabezado del post -->
       <header class="post-header">
-        <h1><!-- TODO: Título del artículo --></h1>
+        <h1>Preparando mi Setup de Wardriving en 2026</h1>
         <div class="post-meta">
           Por <strong>Mario Alba</strong> ·
           <time datetime="2026-01-30"><!-- TODO: fecha legible -->30 enero 2026</time> ·
@@ -158,7 +154,6 @@
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
 
-      <!-- Cuerpo del post (solo escribe; usa h2/h3, p, ul/ol, pre/code, figure) -->
       <section class="post-body">
 
         <h2>Introducción</h2>
