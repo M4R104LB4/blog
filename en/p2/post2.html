@@ -1,1 +1,539 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+  <!-- Título del navegador -->
+  <title>SOLVING XINTRA LABS (BEGINNER LEVEL) | Written by Mario</title>
+
+  <!-- SEO básico -->
+  <meta name="description" content="SOLVING XINTRA LABS (BEGINNER LEVEL)"/>
+  <meta name="author" content="Mario Alba"/>
+
+  
+<style>
+  /* === Variables de color y escala (ajústalas si quieres) === */
+  :root{
+    --bg: #0b1020;         /* fondo general (oscuro suave) */
+    --surface: #0f172a;    /* superficie principal (tarjeta) */
+    --surface-2: #0b1224;  /* superficie secundaria (footer/paginación) */
+    --text: #e5e7eb;       /* texto principal */
+    --text-soft:#cbd5e1;   /* texto secundario */
+    --muted:#94a3b8;       /* meta/pies de foto */
+    --border:#1f2937;      /* bordes */
+    --link:#22d3ee;        /* enlaces/acento */
+    --code-bg:#0a0f1c;     /* fondo de bloques de código */
+    --radius:14px;         /* radio de bordes */
+    --max-w: 860px;        /* ancho del contenedor */
+  }
+
+  /* === Reset mínimo y tipografía === */
+  *{box-sizing:border-box}
+  html,body{
+    margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family: Inter, system-ui,-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:var(--link); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* === Estructura general === */
+  .container{ max-width:var(--max-w); margin:0 auto; padding:24px }
+  .post{
+    background: var(--surface); border:1px solid var(--border);
+    border-radius: var(--radius); overflow:hidden;
+    background-image:
+      linear-gradient(180deg, rgba(34,211,238,.06), transparent 180px),
+      linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
+  }
+
+  /* === Portada (hero) === */
+  .post-cover{
+    overflow:hidden;
+    height: clamp(200px, 36vw, 360px);
+    background: var(--surface-2);
+  }
+  .post-cover img{
+    width:100%; height:100%;
+    object-fit: cover;       /* recorta suavemente, no deforma */
+    object-position: center; /* enfoca el centro */
+    display:block;
+  }
+  /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
+  .post-cover.contain img { object-fit: contain; background:transparent }
+
+  /* === Cabecera del post === */
+  .post-header{ padding:18px 20px 8px }
+  .post-header h1{
+    margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
+  }
+  .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
+  .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
+
+  /* === Cuerpo del post === */
+  .post-body{ padding:16px 20px 24px }
+  .post-body p{ margin:.9em 0 }
+  .post-body h2{ margin-top:28px; font-size:1.45rem }
+  .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
+
+  /* === Imágenes responsivas y figuras === */
+  .post-body img,
+  figure img{
+    max-width:100%;
+    height:auto;            /* mantiene proporción */
+    display:block;
+  }
+  /* limitar imágenes grandes dentro del texto */
+  .post-body img{
+    max-width: min(100%, 780px);
+    margin: 12px auto;
+    border-radius: 10px;
+  }
+  figure{ margin:18px 0 }
+  figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
+
+  /* Imagen a ancho completo del contenedor del artículo */
+  figure.bleed img{ width:100%; max-width:100% }
+
+  /* === Código === */
+  pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
+  pre{
+    background:var(--code-bg); border:1px solid var(--border);
+    padding:14px; border-radius:10px; overflow:auto; margin:18px 0
+  }
+  code{ background: rgba(148,163,184,.15); padding:.15em .35em; border-radius:6px }
+
+  /* === Etiquetas y pie de navegación === */
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; padding: 0 20px 14px }
+  .tag{
+    font-size:.85rem; color:#0c111b; background:linear-gradient(90deg,#67e8f9,#a78bfa);
+    padding:6px 10px; border-radius:999px
+  }
+  .post-footer{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:14px 20px; border-top:1px solid var(--border); background:var(--surface-2)
+  }
+  .post-footer a{
+    display:block; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:#0a0f1c
+  }
+
+  /* === Tablas (opcionales) === */
+  table{ width:100%; border-collapse:collapse; margin:16px 0; border:1px solid var(--border) }
+  th, td{ border-bottom:1px solid var(--border); padding:10px 12px; text-align:left }
+  th{ background:#0c1428 }
+
+  /* === Accesibilidad y responsive === */
+  :focus-visible{ outline:3px solid #93c5fd; outline-offset:2px }
+  @media (max-width:640px){
+    .post-cover{ height:220px }
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- Reutiliza tu mismo header/nav del index si lo tienes como include o copia y pega -->
+  <header class="site-header">
+    <!-- TODO: pega aquí el header/nav del index si no se inyecta automáticamente -->
+  </header>
+
+  <main class="container">
+    <article class="post">
+
+      <!-- Portada (opcional) -->
+      <div class="post-cover">
+        <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
+        <img src="https://m4r104lb4.github.io/blog/en/p2i0.jpg" alt="Portada del artículo" loading="lazy">
+      </div>
+
+      <!-- Encabezado del post -->
+      <header class="post-header">
+        <h1>SOLVING XINTRA LABS (BEGINNER LEVEL)</h1>
+        <div class="post-meta">
+          By <strong>Mario Alba</strong> ·
+          <time datetime="2026-01-30"><!-- TODO: fecha legible -->Feb. 13, 2026</time> ·
+          <!-- TODO: lectura opcional -->~15 min.
+        </div>
+        <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
+      </header>
+
+      <!-- Cuerpo del post (solo escribe; usa h2/h3, p, ul/ol, pre/code, figure) -->
+      <section class="post-body">
+
+        <h2>Intro</h2>
+        <p>This post describes how I manage to solve the beginner level challenges from Xintra Labs. This is not an exact writeup of the challenges but it is more a technical chronicle of how I was discovering and investigating the cases.
+		</p>
+		<p>The post is divided in 2 sections. The first part mentined the 
+		</p>
+		
+		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i1.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 1 — Lab details.</figcaption>
+		</figure>
+		
+        <h2>DAY 1</h2>
+        <p>The first day started by solving the questions related to the "Scoping of incident" without a great effort, then I started this lab by doing my own investivation of usual patterns of malicious activity in the DC, which seemed to be the most affected server by the threat actor.</p>
+		
+		<p>The first sign of an unusual behaviour was this:</p>
+		
+		<p>The attacker used vssadmin to eliminate the shadow copies via cmd. The attacker used the following account: WAIFU\CC-Admin at 2024-03-07 03:36:05.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i2.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 2 — Shadow copies activity from attacker.</figcaption>
+		</figure>
+		
+		<p>With one indicator (A compromised user) I was able to get this</p>
+		
+		<p>The first activity of the user CC-Admin seemed to be the creation of a file called print64.bat using Notepad at 2024-03-07 03:34:54. The path of this file was that one:</p>
+		
+		<pre><code>\\\192.168.0.13\SuperSecretSecureShare\print64.bat</code></pre>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i3.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 3 — Actions performed by attacker before copying malicious script.</figcaption>
+		</figure>
+		
+		<p>After that, a powershell cli is spawned to execute the file print64.exe. At the same time the Powershell script executes the following commands:</p>
+		
+		<pre><code>"C:\Windows\system32\cmd.exe" /c "wmic csproduct get UUID"
+"C:\Windows\system32\cmd.exe" /c "fsutil behavior set SymlinkEvaluation R2L:1"
+"C:\Windows\system32\cmd.exe" /c "fsutil behavior set SymlinkEvaluation R2R:1"
+"C:\Windows\system32\cmd.exe" /c "iisreset.exe /stop"
+"C:\Windows\system32\cmd.exe" /c "reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters /v MaxMpxCt /d 65535 /t REG_DWORD /f"
+"C:\Windows\system32\cmd.exe" /c "vssadmin.exe Delete Shadows /all /quiet"
+"C:\Windows\system32\cmd.exe" /c "arp -a"
+"C:\Windows\system32\cmd.exe" /c "wmic.exe Shadowcopy Delete"
+"C:\Windows\system32\cmd.exe" /c "wmic.exe Shadowcopy Delete"
+"C:\Windows\system32\cmd.exe" /c "bcdedit /set {default} recoveryenabled No"
+"C:\Windows\system32\cmd.exe" /c "cmd.exe /c  for /F \"tokens=*\" %%1 in ('wevtutil.exe el') DO wevtutil.exe cl \"%%1\""
+</code></pre>
+
+		<p>As the actions included the elimination of shadow copies and the elimination of logs with wevtutil, this executable seemed to be a ransomware.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i4.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 4 — Ransomware actions.</figcaption>
+		</figure>
+		
+		<p>After verifying the content of the script print64.bat, I noticed this file was just a command to execute print64.exe.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i5.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 5 — Contents of print64.bat.</figcaption>
+		</figure>
+		
+		<p>With the location of a possible malicious file I was able to get its hash.</p>
+
+		<pre><code>MD5	|	FF8A7DD8B1CB0420DD18810041D172A7
+SHA1	|	CC166BC3EAA024AAC4A2CDC02174AE87FCF47E28
+SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
+</code></pre>
+		
+		<p>With this info, I was able to respond the questions of the section "Release the Ransomware UwU".</p>
+		
+		<p>In this folder the following file was found:</p>
+		
+		<p>you-cant-see-this-cause-I-am-good-at-NTFS-permissions.txt</p>
+		
+		<p>It was actually a flag.</p>
+		
+		<p>After that, I take a look to the MFT of the DC, I was able to found the lnk of PTASpy, which seemed to be related to Azure attacks:</p>
+		
+		<p>Azure Active Directory Pass-Through Authentication Flaws</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i6.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 6 — Unusual files related to PTSpy.</figcaption>
+		</figure>
+		
+		<p>Using the extension of the ransomware, I was ale to stablish that the encryption started at 2024-03-07 03:36:06 according to MFT Entries.</p>
+		
+		<p>In a time range close to the incident, the following logon events were shown with the user account WAIFY\CC-Admin:</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i7.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 7 — Logon events of the account WAIFY\CC-Admin.</figcaption>
+		</figure>
+		
+		<p>With this information, the attacker accessed the server CC-SQL-01 (192.168.0.14) to cause damage on databases, so the next step was investigating the SQL server.</p>
+		
+		<p>A remote session was stablished with the user CC-Admin starting at 2024-03-06 02:59:32 in the SQL Server.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i8.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 8 — RDP sessions in the server CC-SQL-01.</figcaption>
+		</figure>
+		
+		<p>From there some files were created in the folder of this user, so after some time testing MFT Entry IDs and even verifying the Hint, I was able to find the second flag in this section.</p>
+		
+		<p>Finally, I initiated the investigation of the Jump Machine.</p>
+		
+		<p>Starting with amcache to find some signs of suspicious activity, I was able to find a detection process of defender AV being with activity at 2024-03-06 08:21:32.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i9.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 9 — Unusual activity registered in Amcache.</figcaption>
+		</figure>
+		
+		<p>After reviewing the browsing history, I was able to find some signs of the attacker activity with the account ivanderplas1 at 3/3/2024 4:21:43 PM.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i10.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 10 — Web browsing logs of attacker using the account "ivanderplas1".</figcaption>
+		</figure>
+		
+		<p>After reviewing the authentication events, I was able to see the hostname used by the attacker: 283d12e66790 (10.0.0.12)</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i11.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 11 — Logon events attributed to the attacker.</figcaption>
+		</figure>
+		
+		<p>Following the questions related to the Jumping Machine, I found the DNS query made by the powershell process and the complete powershell command executed, by reviewing the file ConsoleHost_History of the user ivanderplas1 to complete the section "Breaching the University".</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i12.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 12 — DNS query events.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i13.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 13 — Powershell ConsoleHost_History.</figcaption>
+		</figure>
+		
+		<p>After achieving a point where I was not finding more evidence I decided to move to the DC and investigate the questions related to the "Domain Dominance".</p>
+				
+		<p>I started by investigating a dll injection attack made to get credentials. After verifying the MFT I found the dll PSTASpy.dll.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i14.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 14 — MFT entry of malicious DLL.</figcaption>
+		</figure>
+		
+		<p>This DLL was injected to the process 3616 using InjectDLL.exe at 2024-03-06 02:53:15.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i15.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 15 — Process injection events.</figcaption>
+		</figure>
+		
+		<p>That was how my first day of investigation concluded.</p>
+		
+		<h2>DAY 2</h2>
+		
+		<p>During my second day dedicated to the labs I started by investigating the M365 logs. I was able to identify multiple failed authentications from 8 different users, using AWS services. After that, the attacker accessed the network with the user ivanderplas1@waifu.phd from the IP address 207.246.70.192.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i16.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 16 — M365 Authentication logs.</figcaption>
+		</figure>
+		
+		<p>After solving almost all the answers of the section "Initial Access via Entra ID" I moved again to a deeper investigation of the triages.</p>
+		
+		<p>There, in the DC server I was able to find all the answers related to the section "Accessing Volume Shadow Copies" with the execution of the following command:</p>
+		
+		<pre><code>vssadmin  create shadow /for=C:</code></pre>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i17.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 17 — Shadow copy deletion after rasomware execution.</figcaption>
+		</figure>
+		
+		
+		<p>It concluded the activities made, noticing that some of the questions were much more difficult for me.</p>
+		
+		<h2>DAY 3</h2>
+		
+		<p>My third day of investigation started by going still deeper to reveal the hidden answers. It included reading carefully the automatic destinations, custom destinations and the LNK data on the JMP machine.</p>
+		
+		<p>After some time reading carefully the events, I started to find new clues including the fact that the user cleared the sysmon log.</p>
+		
+		<pre><code>"C:\Windows\system32\cmd.exe" /c "cmd.exe /c  for /F \"tokens=*\" %%1 in ('wevtutil.exe el') DO wevtutil.exe cl \"%%1\""</code></pre>
+		
+		<p>After a long time awaiting for the execution of hayabusa in the JMP machine, I was able to understand better what was I missing. The attacker, by using the account "ivanderplas" executed the command "sc query" to query all services, then it sent the output of the command to a file called update.log. The file was filetered with the following command:</p>
+		
+		<pre><code>findstr /i /v """ > update.log</code></pre>
+		
+		<p>After that, the following commands were executed:</p>
+		
+		<pre><code>wmic service get name,displayname,pathname,startmode
+Cmdline: findstr /i /v """
+findstr /i /v "c:\windows\\
+Cmdline: findstr /i "auto"</code></pre>
+
+		<p>The next step in the actions of the attacker was the execution of the following command:</p>
+		
+		<pre><code>C:\Windows\system32\net1 start "Waifu Service</code></pre>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i18.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 18 — Waifu service.</figcaption>
+		</figure>
+		
+		
+		<p>After the service execution, the following file is executed:</p>
+		
+		<pre><code>C:\ProgramData\Waifu Service\Waifu Bin\WaifuSC.exe</code></pre>
+		
+		<p>Very close to the execution of the service, I was able to find another process related to the service: C:\ProgramData\waifu.exe.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i19.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 19 — Malicious process events.</figcaption>
+		</figure>
+		
+		<p>With this information I was able to complete how the attacker was able to escalate privileges.</p>
+		
+		<p>I needed to dedicate long hours to this question related to the technique used to escalate privileges, I confess this is not my specialty and at the end I decided to find the right answer by doing a manual dictionary attack to understand the answer. I discovered I was very close to the answer from the beginning, but it was a group of actions which couldn't be interpreted as multiple techniques.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i20.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 20 — Difficult question 1.</figcaption>
+		</figure>
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i21.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 21 — Finally correct.</figcaption>
+		</figure>
+		
+		<p>The next question which also took me some hours to resolve was related to an executable which was replaced by the attacker, After trying to see if the MFT or the Journal showed something interesting I decided to execute Hayabusa.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i22.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 22 — Difficult question 2.</figcaption>
+		</figure>
+		
+		<p>The level of information I used for this task was the highest.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i23.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 23 — Using Hayabusa.</figcaption>
+		</figure>
+		
+		<p>With this information I found the right answer.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i24.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 24 — Unusual behavior of python process.</figcaption>
+		</figure>
+		
+		<p>I leave the extraction of the beacon configuration at the end, using some clues I was able to parse the process with this awsome tool called CSCE.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i25.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 25 — Unusual behavior of python process.</figcaption>
+		</figure>
+		
+		<p>And finally, after using a lot of hints, I was able to do finish the lab!.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2i26.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 26 — Challenge completed!.</figcaption>
+		</figure>
+		
+		<h1 style="text-align: center; font-size: 50px;">KG Distribution </h1>
+		
+		<h2>DAY 1</h2>
+		
+		<h3>Workstation Investigation</h3>
+		
+		<p>After reviewing the available sources of evidence, and the questions, I saw that I was going to repond some questions about the attack chain using only the memory image of both devices (The workstation and the server).</p>
+		
+		<p>Inside the path of every host I found 2 files, a Vmware configuration file and a memory snapshot:</p>
+		
+		<p>Starting with the most basic command I was able to mount the Image as a partition.</p>
+		
+		<p>In order to start the investigation of the malicious files and some MFT entries, I executed the following command from the 13Cubed channel to get a more detailed information:</p>
+		
+		<pre><code>MemProcFS.exe -device C:\Labs\Evidence\KGDistribution\Workstation\WORKSTATION.vmem -forensic 1 -v</code></pre>
+		
+		<p>By using the forensic timelines, specifically the NTFS and the complete one, I was able to get some of the answers, including the remote administration tool and its execution time.</p>
+		
+		<p>Continuing with the investigation, by filtering the prefetch files I was able to find the tool Curl, used to download a malicious file called officeupgrade.exe.</p>
+		
+		<p>As a consequence of its execution the following registry key is modified, indicating an autorun persistence:</p>
+		
+		<p>Using the PID and the time of execution, I was able to find also the C2 of the attacker, the DLL libraries involved in the injection and the script created by the attacker appeared as an NTFS creation event.</p>
+		
+		<p>The email associated to the breach appeared without being looking for it, when I was looking to the files created close to the breach date.</p>
+		
+		<p>After some time trying to find the reflective DLL technique I used the "hint" and with this help I was directed to the script, where I found the answer. It was the last question of the workstation section.</p>
+		
+		<h3>Server Investigation</h3>
+		
+		<p>I started verifying the process tree. There I found a weird process.</p>
+		
+		<p>After looking to the timelines I found again the presence of the service OfficeUPgrade.exe. The attacker created persistence by copying this file in the following path:</p>
+		
+		<pre><code>\HarddiskVolume3\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code></pre>
+		
+		<h2>DAY 2</h2>
+		
+		<h3>Server Investigation continuation</h3>
+		
+		<p>Continuing with the server analysis, I found one of the questions associated to the command executed by the powershell process.</p>
+		
+		<p>I used the hints for some of the questions which told me to check the process dump. After reviewing the mini dump using the strings utility (I was unable to understand how the hell worked Windbg), I found that the framework used by the attacker C2 was SLIVER.</p>
+		
+		<p>Also, I was able to see the attacker was trying to copy important files of the server including all the SYSTEM registry Key and the database of users ntds.dit.</p>
+		
+		<h2>DAY 3</h2>
+		
+		<p>After testing lots of answers and looking for some threat intelligence coming from DFIR LABS, I found the name of the tool used by the threat actor to stablish persistence called SharPersist.</p>
+		
+		<p>Finally, the most difficult question was the one mentioned in the following picture.</p>
+		
+		<p>I need to say that I used the writeup of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a  specific name of a service. Here is the reference of this guy:</p>
+		
+		<p>https://www.bizarrebinaries.com/posts/xintra-kgdistribution/</p>
+		
+		<p>With that complete, and using some exernal help I was able to complete the lab.</p>
+		
+		<h2>FINAL THOUGTS</h2>
+		
+		<h3>About XINTRA's Platform:</h3>
+		
+		<p>* Even when it is more expensive that paying the HTB sherlocks, it worths, more if you are preparing a certification such as  GX-FA.</p>
+		
+		<p>* I missed a lot the WSL interface for using grep, but I compensate it with powershell.</p>
+		
+		<p>* I loved the automatic detection of the keyboard language.</p>.
+		
+		<p>I loved the structure of the lab questions in a logical manner where you can track the sequence of actions.</p>
+		
+		<h3>About the labs:</h3>
+		
+		<p>The tool used on the lab KG Distribution is very relevant, as It is really fast and works well.</p>
+		
+		<p>The Lab notes, which we call in our company "The context" of the incident is very complete and it really seems similar to what you receive when you are in a real incident.</p>
+		
+		<h3>About me:</h3>
+		
+		<p>Still hope to sharpen my skills as I really suffered solving some questions of the labs.</p>
+
+      <!-- Etiquetas (opcional) -->
+      <div class="tags" aria-label="Etiquetas">
+        <span class="tag">DFIR</span>
+        <span class="tag">XINTRA</span>
+        <span class="tag">INCIDENT RESPONSE</span>
+      </div>
+      <!-- Navegación simple -->
+      <nav class="post-footer">
+        <!-- TODO: actualiza rutas -->
+        <a href="/blog/posts/anterior.html">← Previous</a>
+        <a href="/blog/posts/siguiente.html">Next →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+
+  </footer>
+
+</body>
+</html>
