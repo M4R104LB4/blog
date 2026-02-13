@@ -145,7 +145,7 @@
       <!-- Portada (opcional) -->
       <div class="post-cover">
         <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
-        <img src="https://m4r104lb4.github.io/blog/en/p2i0.jpg" alt="Portada del artículo" loading="lazy">
+        <img src="https://m4r104lb4.github.io/blog/en/p2/i0.jpg" alt="Portada del artículo" loading="lazy">
       </div>
 
       <!-- Encabezado del post -->
@@ -171,7 +171,7 @@
 		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i1.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i1.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 1 — Lab details.</figcaption>
 		</figure>
 		
@@ -183,7 +183,7 @@
 		<p>The attacker used vssadmin to eliminate the shadow copies via cmd. The attacker used the following account: WAIFU\CC-Admin at 2024-03-07 03:36:05.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i2.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i2.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 2 — Shadow copies activity from attacker.</figcaption>
 		</figure>
 		
@@ -194,7 +194,7 @@
 		<pre><code>\\\192.168.0.13\SuperSecretSecureShare\print64.bat</code></pre>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i3.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i3.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 3 — Actions performed by attacker before copying malicious script.</figcaption>
 		</figure>
 		
@@ -216,14 +216,14 @@
 		<p>As the actions included the elimination of shadow copies and the elimination of logs with wevtutil, this executable seemed to be a ransomware.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i4.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i4.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 4 — Ransomware actions.</figcaption>
 		</figure>
 		
 		<p>After verifying the content of the script print64.bat, I noticed this file was just a command to execute print64.exe.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i5.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i5.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 5 — Contents of print64.bat.</figcaption>
 		</figure>
 		
@@ -247,7 +247,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>Azure Active Directory Pass-Through Authentication Flaws</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i6.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i6.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 6 — Unusual files related to PTSpy.</figcaption>
 		</figure>
 		
@@ -256,7 +256,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>In a time range close to the incident, the following logon events were shown with the user account WAIFY\CC-Admin:</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i7.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i7.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 7 — Logon events of the account WAIFY\CC-Admin.</figcaption>
 		</figure>
 		
@@ -265,7 +265,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>A remote session was stablished with the user CC-Admin starting at 2024-03-06 02:59:32 in the SQL Server.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i8.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i8.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 8 — RDP sessions in the server CC-SQL-01.</figcaption>
 		</figure>
 		
@@ -276,33 +276,33 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>Starting with amcache to find some signs of suspicious activity, I was able to find a detection process of defender AV being with activity at 2024-03-06 08:21:32.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i9.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i9.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 9 — Unusual activity registered in Amcache.</figcaption>
 		</figure>
 		
 		<p>After reviewing the browsing history, I was able to find some signs of the attacker activity with the account ivanderplas1 at 3/3/2024 4:21:43 PM.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i10.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i10.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 10 — Web browsing logs of attacker using the account "ivanderplas1".</figcaption>
 		</figure>
 		
 		<p>After reviewing the authentication events, I was able to see the hostname used by the attacker: 283d12e66790 (10.0.0.12)</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i11.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i11.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 11 — Logon events attributed to the attacker.</figcaption>
 		</figure>
 		
 		<p>Following the questions related to the Jumping Machine, I found the DNS query made by the powershell process and the complete powershell command executed, by reviewing the file ConsoleHost_History of the user ivanderplas1 to complete the section "Breaching the University".</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i12.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i12.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 12 — DNS query events.</figcaption>
 		</figure>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i13.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i13.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 13 — Powershell ConsoleHost_History.</figcaption>
 		</figure>
 		
@@ -311,14 +311,14 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>I started by investigating a dll injection attack made to get credentials. After verifying the MFT I found the dll PSTASpy.dll.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i14.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i14.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 14 — MFT entry of malicious DLL.</figcaption>
 		</figure>
 		
 		<p>This DLL was injected to the process 3616 using InjectDLL.exe at 2024-03-06 02:53:15.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i15.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i15.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 15 — Process injection events.</figcaption>
 		</figure>
 		
@@ -329,7 +329,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<p>During my second day dedicated to the labs I started by investigating the M365 logs. I was able to identify multiple failed authentications from 8 different users, using AWS services. After that, the attacker accessed the network with the user ivanderplas1@waifu.phd from the IP address 207.246.70.192.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i16.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i16.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 16 — M365 Authentication logs.</figcaption>
 		</figure>
 		
@@ -340,7 +340,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		<pre><code>vssadmin  create shadow /for=C:</code></pre>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i17.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i17.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 17 — Shadow copy deletion after rasomware execution.</figcaption>
 		</figure>
 		
@@ -371,7 +371,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		<pre><code>C:\Windows\system32\net1 start "Waifu Service</code></pre>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i18.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i18.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 18 — Waifu service.</figcaption>
 		</figure>
 		
@@ -383,7 +383,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		<p>Very close to the execution of the service, I was able to find another process related to the service: C:\ProgramData\waifu.exe.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i19.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i19.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 19 — Malicious process events.</figcaption>
 		</figure>
 		
@@ -392,46 +392,46 @@ Cmdline: findstr /i "auto"</code></pre>
 		<p>I needed to dedicate long hours to this question related to the technique used to escalate privileges, I confess this is not my specialty and at the end I decided to find the right answer by doing a manual dictionary attack to understand the answer. I discovered I was very close to the answer from the beginning, but it was a group of actions which couldn't be interpreted as multiple techniques.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i20.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i20.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 20 — Difficult question 1.</figcaption>
 		</figure>
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i21.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i21.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 21 — Finally correct.</figcaption>
 		</figure>
 		
 		<p>The next question which also took me some hours to resolve was related to an executable which was replaced by the attacker, After trying to see if the MFT or the Journal showed something interesting I decided to execute Hayabusa.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i22.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i22.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 22 — Difficult question 2.</figcaption>
 		</figure>
 		
 		<p>The level of information I used for this task was the highest.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i23.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i23.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 23 — Using Hayabusa.</figcaption>
 		</figure>
 		
 		<p>With this information I found the right answer.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i24.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i24.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 24 — Unusual behavior of python process.</figcaption>
 		</figure>
 		
 		<p>I leave the extraction of the beacon configuration at the end, using some clues I was able to parse the process with this awsome tool called CSCE.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i25.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i25.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 25 — Unusual behavior of python process.</figcaption>
 		</figure>
 		
 		<p>And finally, after using a lot of hints, I was able to do finish the lab!.</p>
 		
 		<figure>
-		  <img src="https://m4r104lb4.github.io/blog/en/p2i26.jpg" alt="Ilustración" loading="lazy"> 
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i26.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 26 — Challenge completed!.</figcaption>
 		</figure>
 		
