@@ -165,7 +165,7 @@
         <h2>Intro</h2>
         <p>This post describes how I manage to solve the beginner level challenges from Xintra Labs. This is not an exact writeup of the challenges but it is more a technical chronicle of how I was discovering and investigating the cases.
 		</p>
-		<p>The post is divided in 2 sections. The first part mentined the 
+		<p>The post is divided in 2 sections. The first part mentined the details of how I was able to achieve the complete solution of Waifu university lab and the second part mentioned my road to solve KG Distribution lab.
 		</p>
 		
 		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
@@ -437,6 +437,11 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<h1 style="text-align: center; font-size: 50px;">KG Distribution </h1>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i27.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 27 — Lab details.</figcaption>
+		</figure>
+		
 		<h2>DAY 1</h2>
 		
 		<h3>Workstation Investigation</h3>
@@ -445,7 +450,17 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<p>Inside the path of every host I found 2 files, a Vmware configuration file and a memory snapshot:</p>
 		
-		<p>Starting with the most basic command I was able to mount the Image as a partition.</p>
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i28.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 28 — Evidence Files for workstation.</figcaption>
+		</figure>
+		
+		<p>Starting with the most basic command I was able to mount the Image as a partition using MemProcFS.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i29.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 29 — Memory image mounting with MemProcFS.</figcaption>
+		</figure>
 		
 		<p>In order to start the investigation of the malicious files and some MFT entries, I executed the following command from the 13Cubed channel to get a more detailed information:</p>
 		
@@ -453,23 +468,79 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<p>By using the forensic timelines, specifically the NTFS and the complete one, I was able to get some of the answers, including the remote administration tool and its execution time.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i30.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 30 — DWAgent file download.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i31.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 31 — DWAgent installation path.</figcaption>
+		</figure>
+		
 		<p>Continuing with the investigation, by filtering the prefetch files I was able to find the tool Curl, used to download a malicious file called officeupgrade.exe.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i32.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 32 — Prefetch files created after CURL execution.</figcaption>
+		</figure>
 		
 		<p>As a consequence of its execution the following registry key is modified, indicating an autorun persistence:</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i33.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 33 — Autorun persistence.</figcaption>
+		</figure>
+				
 		<p>Using the PID and the time of execution, I was able to find also the C2 of the attacker, the DLL libraries involved in the injection and the script created by the attacker appeared as an NTFS creation event.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i34.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 34 — C2 network connections.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i35.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 35 — Process injection evidence.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i36.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 36 — Script created and executed by the attacker.</figcaption>
+		</figure>
+		
 		
 		<p>The email associated to the breach appeared without being looking for it, when I was looking to the files created close to the breach date.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i37.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 37 — Email opened by the victim.</figcaption>
+		</figure>
+		
 		<p>After some time trying to find the reflective DLL technique I used the "hint" and with this help I was directed to the script, where I found the answer. It was the last question of the workstation section.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i38.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 38 — Reflective DLL command execution.</figcaption>
+		</figure>
 		
 		<h3>Server Investigation</h3>
 		
 		<p>I started verifying the process tree. There I found a weird process.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i39.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 39 — Reflective DLL command execution.</figcaption>
+		</figure>
+		
 		<p>After looking to the timelines I found again the presence of the service OfficeUPgrade.exe. The attacker created persistence by copying this file in the following path:</p>
 		
 		<pre><code>\HarddiskVolume3\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code></pre>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i40.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 40 — Persistance directory associated to startup.</figcaption>
+		</figure>
 		
 		<h2>DAY 2</h2>
 		
@@ -477,43 +548,86 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<p>Continuing with the server analysis, I found one of the questions associated to the command executed by the powershell process.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i41.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 41 — Powershell command.</figcaption>
+		</figure>
+		
 		<p>I used the hints for some of the questions which told me to check the process dump. After reviewing the mini dump using the strings utility (I was unable to understand how the hell worked Windbg), I found that the framework used by the attacker C2 was SLIVER.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i42.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 42 — Strings related to Sliver found on the minidump of the C2 process.</figcaption>
+		</figure>
+		
 		<p>Also, I was able to see the attacker was trying to copy important files of the server including all the SYSTEM registry Key and the database of users ntds.dit.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i43.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 43 — Command associated to a copy of the registry key.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i44.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 44 — Command associated to a copy of ntds.dit .</figcaption>
+		</figure>
 		
 		<h2>DAY 3</h2>
 		
 		<p>After testing lots of answers and looking for some threat intelligence coming from DFIR LABS, I found the name of the tool used by the threat actor to stablish persistence called SharPersist.</p>
 		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i45.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 45 — SharPersis (Persistant tool).</figcaption>
+		</figure>
+		
 		<p>Finally, the most difficult question was the one mentioned in the following picture.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i46.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 46 — The most difficut question.</figcaption>
+		</figure>
 		
 		<p>I need to say that I used the writeup of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a  specific name of a service. Here is the reference of this guy:</p>
 		
-		<p>https://www.bizarrebinaries.com/posts/xintra-kgdistribution/</p>
+		<a href="url">https://www.bizarrebinaries.com/posts/xintra-kgdistribution/</a>
 		
 		<p>With that complete, and using some exernal help I was able to complete the lab.</p>
+		
+		<figure>
+		  <img src="https://m4r104lb4.github.io/blog/en/p2/i47.jpg" alt="Ilustración" loading="lazy"> 
+		  <figcaption>Figure 47 — Lab completed!.</figcaption>
+		</figure>
 		
 		<h2>FINAL THOUGTS</h2>
 		
 		<h3>About XINTRA's Platform:</h3>
-		
-		<p>* Even when it is more expensive that paying the HTB sherlocks, it worths, more if you are preparing a certification such as  GX-FA.</p>
-		
-		<p>* I missed a lot the WSL interface for using grep, but I compensate it with powershell.</p>
-		
-		<p>* I loved the automatic detection of the keyboard language.</p>.
-		
-		<p>I loved the structure of the lab questions in a logical manner where you can track the sequence of actions.</p>
+		<div>
+			<ul>
+				<li>Even when it is more expensive that paying the HTB sherlocks, it worths, more if you are preparing a certification such as  GX-FA.</li>
+				
+				<li>I missed a lot the WSL interface for using grep, but I compensate it with powershell.</li>
+				
+				<li>I loved the automatic detection of the keyboard language.</li>
+				
+				<li>I loved the structure of the lab questions in a logical manner where you can track the sequence of actions.</li>
+			</ul>
+		</div>
 		
 		<h3>About the labs:</h3>
-		
-		<p>The tool used on the lab KG Distribution is very relevant, as It is really fast and works well.</p>
-		
-		<p>The Lab notes, which we call in our company "The context" of the incident is very complete and it really seems similar to what you receive when you are in a real incident.</p>
-		
+		<div>
+			<ul>
+				<li>The tool used on the lab KG Distribution is very relevant, as It is really fast and works well.</li>
+				
+				<li>The Lab notes, which we call in our company "The context" of the incident is very complete and it really seems similar to what you receive when you are in a real incident.</li>
+			</ul>
+		</div>		
 		<h3>About me:</h3>
-		
-		<p>Still hope to sharpen my skills as I really suffered solving some questions of the labs.</p>
+		<div>
+			<ul>		
+				<li>Still hope to sharpen my skills as I really suffered solving some questions of the labs.</li>
+			</ul>
+		</div>
 
       <!-- Etiquetas (opcional) -->
       <div class="tags" aria-label="Etiquetas">
@@ -524,8 +638,8 @@ Cmdline: findstr /i "auto"</code></pre>
       <!-- Navegación simple -->
       <nav class="post-footer">
         <!-- TODO: actualiza rutas -->
-        <a href="/blog/posts/anterior.html">← Previous</a>
-        <a href="/blog/posts/siguiente.html">Next →</a>
+        <a href="https://m4r104lb4.github.io/blog/en/p1/post1.html">← Previous</a>
+        <a href="https://m4r104lb4.github.io/blog/en/p1/post1.html">Next →</a>
       </nav>
 
     </article>
