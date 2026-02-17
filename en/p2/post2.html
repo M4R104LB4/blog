@@ -150,11 +150,11 @@
 
       <!-- Encabezado del post -->
       <header class="post-header">
-        <h1>SOLVING XINTRA LABS (BEGINNER LEVEL)</h1>
+        <h1>SOLVING XINTRA LABS (Beginner Level)</h1>
         <div class="post-meta">
           By <strong>Mario Alba</strong> ·
-          <time datetime="2026-01-30"><!-- TODO: fecha legible -->Feb. 13, 2026</time> ·
-          <!-- TODO: lectura opcional -->~15 min.
+          <time datetime="2026-02-18"><!-- TODO: fecha legible -->Feb. 18, 2026</time> ·
+          <!-- TODO: lectura opcional -->~1 hr.
         </div>
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
@@ -163,12 +163,12 @@
       <section class="post-body">
 
         <h2>Intro</h2>
-        <p>This post describes how I manage to solve the beginner level challenges from <a href="https://www.xintra.org/">Xintra Labs</a>. This is not an exact writeup of the challenges but it is more a technical chronicle of how I was discovering and investigating the cases.
+        <p>This post describes how I manage to solve the beginner level challenges from <a href="https://www.xintra.org/">Xintra Labs</a>. This is not an exact write-up of the challenges, but it is more a technical chronicle of how I was discovering flags and investigating the cases.
 		</p>
 		<p>The post is divided in 2 sections:</p>
-		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine (Called JMP Machine) accessed via VPN, which was also used as a pivoting host to infect an AD server with a ransomware and to compromise an SQL server. As source of evidence I received a triaje and its parsed version of each host.</p>
-		<p>The second part explains how I was able to solve the KG Distribution lab. This is a lab including 2 machines, a host and a server, where the evidence is a memory image of each one.</p>
-		<p>The objective in both cases was solving some questions trough all the attack chain.</p>
+		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine (Called JMP Machine) accessed via VPN. It is also used as a pivoting host to infect an AD (Active Directory) server with a ransomware and to compromise an SQL server. As source of evidence, I received a triaje and its parsed version of each host.</p>
+		<p>The second part explains how I was able to solve the KG Distribution lab. This is a lab that included 2 machines, a host and a server, where the evidence is a memory image of each one.</p>
+		<p>The objective in both cases was to solve some questions through all the attack chain.</p>
 		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
 		
 		<figure>
@@ -177,9 +177,9 @@
 		</figure>
 		
         <h2>DAY 1</h2>
-        <p>The first day started when I solved the questions of the Section "Scoping of incident", then I started this lab by doing my own investivation of usual patterns of malicious activity in the DC, which seemed to be the most affected server by the threat actor.</p>
+        <p>The first day started when I solved the questions of the Section "Scoping of incident", then I started this lab by doing my own investigation of usual patterns of malicious activity in the AD, which seemed to be the most affected server by the threat actor.</p>
 		
-		<p>The first sign of an unusual behaviour was this:</p>
+		<p>The first sign of unusual behaviour was this:</p>
 		
 		<p>The attacker used vssadmin to eliminate the shadow copies via cmd. Then they used the following account: WAIFU\CC-Admin at 2024-03-07 03:36:05.</p>
 		
@@ -188,9 +188,9 @@
 		  <figcaption>Figure 2 — Shadow copies activity from attacker.</figcaption>
 		</figure>
 		
-		<p>With one indicator (A compromised user) I was able to get this:</p>
+		<p>With one indicator (A user account compromised) I was able to get this:</p>
 		
-		<p>The first activity of the user CC-Admin seemed to be the creation of a file called print64.bat using Notepad at 2024-03-07 03:34:54. The path of this file was that one:</p>
+		<p>The first activity of the user CC-Admin seemed to be the creation of a file called print64.bat using Notepad at 2024-03-07 03:34:54. The path where the file was found was this:</p>
 		
 		<pre><code>\\\192.168.0.13\SuperSecretSecureShare\print64.bat</code></pre>
 		
@@ -199,7 +199,7 @@
 		  <figcaption>Figure 3 — Actions performed by attacker before copying malicious script.</figcaption>
 		</figure>
 		
-		<p>After that, a powershell CLI was spawned to execute the file print64.exe. At the same time the Powershell script executed the following commands:</p>
+		<p>After that, a Powershell CLI was used by the attacker to execute the file print64.exe. At the same time the Powershell script contained the following commands:</p>
 		
 		<pre><code>"C:\Windows\system32\cmd.exe" /c "wmic csproduct get UUID"
 "C:\Windows\system32\cmd.exe" /c "fsutil behavior set SymlinkEvaluation R2L:1"
@@ -214,7 +214,7 @@
 "C:\Windows\system32\cmd.exe" /c "cmd.exe /c  for /F \"tokens=*\" %%1 in ('wevtutil.exe el') DO wevtutil.exe cl \"%%1\""
 </code></pre>
 
-		<p>As the actions included the elimination of shadow copies and the elimination of logs with wevtutil, this executable seemed to be a ransomware.</p>
+		<p>As the actions included the elimination of shadow copies and the elimination of logs with the tool Wevtutil, this executable seemed to be a ransomware.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i4.jpg" alt="Ilustración" loading="lazy"> 
@@ -235,15 +235,15 @@ SHA1	|	CC166BC3EAA024AAC4A2CDC02174AE87FCF47E28
 SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 </code></pre>
 		
-		<p>With this info, I responded the questions of the section "Release the Ransomware".</p>
+		<p>With this info, I answered the questions of the section "Release the Ransomware".</p>
 		
 		<p>In this folder the following file was found:</p>
 		
 		<p>you-cant-see-this-cause-I-am-good-at-NTFS-permissions.txt</p>
 		
-		<p>It was actually a flag.</p>
+		<p>It was a flag for my surprise.</p>
 		
-		<p>After that, I take a look to the MFT of the DC, I was able to found the lnk of PTASpy, which seemed to be related to Azure attacks:</p>
+		<p>After that, I looked to the MFT of the DC, I was able to found the .lnk file associated to PTASpy, which seemed to be related to Azure attacks:</p>
 		
 		<p>Azure Active Directory Pass-Through Authentication Flaws</p>
 		
@@ -252,9 +252,9 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <figcaption>Figure 6 — Unusual files related to PTSpy.</figcaption>
 		</figure>
 		
-		<p>Using the extension of the ransomware, I knew that the encryption started at 2024-03-07 03:36:06 according to MFT Entries.</p>
+		<p>Using the extension of the ransomware, I knew that the encryption started at 2024-03-07 03:36:06 according to MFT entries.</p>
 		
-		<p>In a time range close to the incident, the following logon events were shown with the user account WAIFY\CC-Admin:</p>
+		<p>In a time lapse close to the incident, the following logon events were shown with the user account WAIFY\CC-Admin:</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i7.jpg" alt="Ilustración" loading="lazy"> 
@@ -263,7 +263,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<p>With this information, the attacker accessed the server CC-SQL-01 (192.168.0.14) to cause damage on databases, so the next step was investigating the SQL server.</p>
 		
-		<p>A remote session was stablished with the user CC-Admin starting at 2024-03-06 02:59:32 in the SQL Server.</p>
+		<p>A remote session was established with the user CC-Admin starting at 2024-03-06 02:59:32 in the SQL Server.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i8.jpg" alt="Ilustración" loading="lazy"> 
@@ -295,7 +295,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <figcaption>Figure 11 — Logon events attributed to the attacker.</figcaption>
 		</figure>
 		
-		<p>Following the questions related to the Jumping Machine, I found the DNS query made by the powershell process and the complete powershell command executed, by reviewing the file ConsoleHost_History of the user ivanderplas1 to complete the section "Breaching the University".</p>
+		<p>Following the questions related to the JMP Machine, I found the DNS query made by the Powershell process and the exact command executed, by reviewing the file ConsoleHost_History of the user ivanderplas1 to complete the section "Breaching the University".</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i12.jpg" alt="Ilustración" loading="lazy"> 
@@ -304,12 +304,12 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i13.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 13 — Powershell ConsoleHost_History.</figcaption>
+		  <figcaption>Figure 13 — Powershell ConsoleHost_History entries.</figcaption>
 		</figure>
 		
 		<p>After achieving a point where I was not finding more evidence I decided to move to the DC and investigate the questions related to the "Domain Dominance".</p>
 				
-		<p>I started by investigating a dll injection attack made to get credentials. After verifying the MFT I found the dll PSTASpy.dll.</p>
+		<p>I started by investigating a Dll injection attack made to get credentials. After verifying the MFT I found the dll file PSTASpy.dll.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i14.jpg" alt="Ilustración" loading="lazy"> 
@@ -349,13 +349,13 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<h2>DAY 3</h2>
 		
-		<p>My third day of investigation started by going still deeper to reveal the hidden answers. It included reading carefully the automatic destinations, custom destinations and the LNK data on the JMP machine.</p>
+		<p>My third day of investigation started by going still deeper to reveal the hidden answers. It included reading carefully the automatic destinations, custom destinations and LNK data on the JMP machine.</p>
 		
-		<p>After some time reading carefully the events, I started to find new clues including the fact that the user cleared the sysmon log.</p>
+		<p>After some time reading carefully the events, I started to find new clues including the fact that the user cleared the Sysmon log.</p>
 		
 		<pre><code>"C:\Windows\system32\cmd.exe" /c "cmd.exe /c  for /F \"tokens=*\" %%1 in ('wevtutil.exe el') DO wevtutil.exe cl \"%%1\""</code></pre>
 		
-		<p>After a long time awaiting for the execution of hayabusa in the JMP machine, I was able to understand better what was I missing. The attacker, by using the account "ivanderplas" executed the command "sc query" to query all services, then it sent the output of the command to a file called update.log. The file was filetered with the following command:</p>
+		<p>After a long time waiting for the execution of hayabusa in the JMP machine, I was able to understand better what I missed. The attacker, by using the account "ivanderplas" executed the command "sc query" to query all services, then they sent the output of the command to a file called update.log. The file was filetered with the following command:</p>
 		
 		<pre><code>findstr /i /v """ > update.log</code></pre>
 		
@@ -397,10 +397,10 @@ Cmdline: findstr /i "auto"</code></pre>
 		</figure>
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i21.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 21 — Finally correct.</figcaption>
+		  <figcaption>Figure 21 — Finally a correct answer.</figcaption>
 		</figure>
 		
-		<p>The next question which also took me some hours to resolve was related to an executable which was replaced by the attacker, After trying to see if the MFT or the Journal showed something interesting I decided to execute Hayabusa.</p>
+		<p>The next question which also took me some hours to resolve was related to an executable which was replaced by the attacker, after trying to find in the MFT or the Journal something interesting, I decided to execute Hayabusa.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i22.jpg" alt="Ilustración" loading="lazy"> 
@@ -421,18 +421,18 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 24 — Unusual behavior of python process.</figcaption>
 		</figure>
 		
-		<p>I leave the extraction of the beacon configuration at the end, using some clues I was able to parse the process with this awsome tool called CSCE.</p>
+		<p>I leave the extraction of the beacon configuration at the end, using some clues I was able to parse the process with this awesome tool called CSCE.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i25.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 25 — Unusual behavior of python process.</figcaption>
 		</figure>
 		
-		<p>And finally, after using a lot of hints, I was able to do finish the lab!.</p>
+		<p>And finally, after using a lot of hints, I was able to do finish the lab!</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i26.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 26 — Challenge completed!.</figcaption>
+		  <figcaption>Figure 26 — Challenge completed!</figcaption>
 		</figure>
 		
 		<h1 style="text-align: center; font-size: 50px;">KG Distribution </h1>
@@ -446,9 +446,9 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<h3>Workstation Investigation</h3>
 		
-		<p>After reviewing the available sources of evidence, and the questions, I saw that I was going to repond some questions about the attack chain using only the memory image of both devices (The workstation and the server).</p>
+		<p>After reviewing the available sources of evidence, and the questions, I saw that I was going to answer some questions about the attack chain using only the memory image of both devices (The workstation and the server).</p>
 		
-		<p>Inside the path of every host I found 2 files, a Vmware configuration file and a memory snapshot:</p>
+		<p>Inside the path of every host, I found 2 files, a Vmware configuration file and a memory snapshot:</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i28.jpg" alt="Ilustración" loading="lazy"> 
@@ -462,7 +462,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 29 — Memory image mounting with MemProcFS.</figcaption>
 		</figure>
 		
-		<p>In order to start the investigation of the malicious files and some MFT entries, I executed the following command from the 13Cubed channel to get a more detailed information:</p>
+		<p>In order to start the investigation of the malicious files and some MFT entries, I executed the following command from the 13Cubed channel to get more detailed information:</p>
 		
 		<pre><code>MemProcFS.exe -device C:\Labs\Evidence\KGDistribution\Workstation\WORKSTATION.vmem -forensic 1 -v</code></pre>
 		
@@ -485,7 +485,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 32 — Prefetch files created after CURL execution.</figcaption>
 		</figure>
 		
-		<p>As a consequence of its execution the following registry key is modified, indicating an autorun persistence:</p>
+		<p>Because of its execution the following registry key is modified, indicating an autorun persistence:</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i33.jpg" alt="Ilustración" loading="lazy"> 
@@ -517,7 +517,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 37 — Email opened by the victim.</figcaption>
 		</figure>
 		
-		<p>After some time trying to find the reflective DLL technique I used the "hint" and with this help I was directed to the script, where I found the answer. It was the last question of the workstation section.</p>
+		<p>After some time trying to find the reflective DLL technique, I used the "hint" and with this help I was directed to the script, where I found the answer. It was the last question of the workstation section.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i38.jpg" alt="Ilustración" loading="lazy"> 
@@ -533,7 +533,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 39 — Reflective DLL command execution.</figcaption>
 		</figure>
 		
-		<p>After looking to the timelines I found again the presence of the service OfficeUPgrade.exe. The attacker created persistence by copying this file in the following path:</p>
+		<p>After looking at the timelines I found again the presence of the service OfficeUPgrade.exe. The attacker created persistence by copying this file in the following path:</p>
 		
 		<pre><code>\HarddiskVolume3\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code></pre>
 		
@@ -546,7 +546,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<h3>Server Investigation continuation</h3>
 		
-		<p>Continuing with the server analysis, I found one of the questions associated to the command executed by the powershell process.</p>
+		<p>Continuing with the server analysis, I found one of the questions associated to the command executed by the Powershell process.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i41.jpg" alt="Ilustración" loading="lazy"> 
@@ -574,7 +574,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<h2>DAY 3</h2>
 		
-		<p>After testing lots of answers and looking for some threat intelligence coming from DFIR LABS, I found the name of the tool used by the threat actor to stablish persistence called SharPersist.</p>
+		<p>After testing lots of answers and looking for some threat intelligence information from DFIR LABS, I found the name of the tool used by the threat actor to establish persistence called "SharPersist".</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i45.jpg" alt="Ilustración" loading="lazy"> 
@@ -588,15 +588,15 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 46 — The most difficut question :(.</figcaption>
 		</figure>
 		
-		<p>I need to say that I used the writeup of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a specific name of a service. Here is the reference of its blog:</p>
+		<p>I need to say that I used the write-up of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a specific name of a service. Here is the link for its blog:</p>
 		
 		<a href="url">https://www.bizarrebinaries.com/posts/xintra-kgdistribution/</a>
 		
-		<p>With that complete, and using some exernal help I was able to complete the lab.</p>
+		<p>With some exernal help I was able to complete the lab.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i47.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 47 — Lab completed!.</figcaption>
+		  <figcaption>Figure 47 — Lab completed!</figcaption>
 		</figure>
 		
 		<h2>FINAL THOUGTS</h2>
@@ -617,15 +617,16 @@ Cmdline: findstr /i "auto"</code></pre>
 		<h3>About the labs:</h3>
 		<div>
 			<ul>
-				<li>The tool used on the lab KG Distribution is very relevant, as It is really fast and works well.</li>
+				<li>The tool used on the KG Distribution lab (MemProcFS) is very relevant, as it is really fast and works well.</li>
 				
-				<li>The Lab notes, which we call in our company "The context" of the incident is very complete and it really seems similar to what you receive when you are in a real incident.</li>
+				<li>The Lab notes, which we call in our company "The context" of the incident are very complete and they really seemed similar to what you receive when you are in a real incident.</li>
 			</ul>
 		</div>		
 		<h3>About me:</h3>
 		<div>
 			<ul>		
-				<li>Still hope to sharpen my skills as I really suffered solving some questions of the labs and I am almost warming up for the difficult challenges.</li>
+				<li>I hope to sharpen my skills as I really suffered resolving some questions of the labs and I am almost warming up for the difficult challenges.</li>
+				<li>I hope to improve my english in further posts. Sorry, it is not AI generated content</li>
 			</ul>
 		</div>
 
