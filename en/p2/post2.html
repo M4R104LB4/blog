@@ -5,16 +5,15 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-  <!-- Título del navegador -->
-  <title>SOLVING XINTRA LABS (BEGINNER LEVEL) | Written by Mario</title>
 
-  <!-- SEO básico -->
-  <meta name="description" content="SOLVING XINTRA LABS (BEGINNER LEVEL)"/>
+  <title>SOLVING THE XINTRA.ORG LABS (BEGINNER LEVEL) | Written by Mario</title>
+
+  <meta name="description" content="SOLVING THE XINTRA.ORG LABS (BEGINNER LEVEL)"/>
   <meta name="author" content="Mario Alba"/>
 
   
 <style>
-  /* === Variables de color y escala (ajústalas si quieres) === */
+
   :root{
     --bg: #0b1020;         /* fondo general (oscuro suave) */
     --surface: #0f172a;    /* superficie principal (tarjeta) */
@@ -29,7 +28,6 @@
     --max-w: 860px;        /* ancho del contenedor */
   }
 
-  /* === Reset mínimo y tipografía === */
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0; background:var(--bg); color:var(--text);
@@ -39,7 +37,7 @@
   a{color:var(--link); text-decoration:none}
   a:hover{text-decoration:underline}
 
-  /* === Estructura general === */
+
   .container{ max-width:var(--max-w); margin:0 auto; padding:24px }
   .post{
     background: var(--surface); border:1px solid var(--border);
@@ -49,7 +47,7 @@
       linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
   }
 
-  /* === Portada (hero) === */
+
   .post-cover{
     overflow:hidden;
     height: clamp(200px, 36vw, 360px);
@@ -57,14 +55,14 @@
   }
   .post-cover img{
     width:100%; height:100%;
-    object-fit: cover;       /* recorta suavemente, no deforma */
-    object-position: center; /* enfoca el centro */
+    object-fit: cover;       
+    object-position: center; 
     display:block;
   }
-  /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
+
   .post-cover.contain img { object-fit: contain; background:transparent }
 
-  /* === Cabecera del post === */
+ 
   .post-header{ padding:18px 20px 8px }
   .post-header h1{
     margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
@@ -72,20 +70,20 @@
   .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
   .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
 
-  /* === Cuerpo del post === */
+
   .post-body{ padding:16px 20px 24px }
   .post-body p{ margin:.9em 0 }
   .post-body h2{ margin-top:28px; font-size:1.45rem }
   .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
 
-  /* === Imágenes responsivas y figuras === */
+ 
   .post-body img,
   figure img{
     max-width:100%;
-    height:auto;            /* mantiene proporción */
+    height:auto;            
     display:block;
   }
-  /* limitar imágenes grandes dentro del texto */
+  
   .post-body img{
     max-width: min(100%, 780px);
     margin: 12px auto;
@@ -94,10 +92,10 @@
   figure{ margin:18px 0 }
   figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
 
-  /* Imagen a ancho completo del contenedor del artículo */
+ 
   figure.bleed img{ width:100%; max-width:100% }
 
-  /* === Código === */
+
   pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
   pre{
     background:var(--code-bg); border:1px solid var(--border);
@@ -105,7 +103,7 @@
   }
   code{ background: rgba(148,163,184,.15); padding:.15em .35em; border-radius:6px }
 
-  /* === Etiquetas y pie de navegación === */
+  
   .tags{ display:flex; flex-wrap:wrap; gap:8px; padding: 0 20px 14px }
   .tag{
     font-size:.85rem; color:#0c111b; background:linear-gradient(90deg,#67e8f9,#a78bfa);
@@ -119,12 +117,12 @@
     display:block; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:#0a0f1c
   }
 
-  /* === Tablas (opcionales) === */
+ 
   table{ width:100%; border-collapse:collapse; margin:16px 0; border:1px solid var(--border) }
   th, td{ border-bottom:1px solid var(--border); padding:10px 12px; text-align:left }
   th{ background:#0c1428 }
 
-  /* === Accesibilidad y responsive === */
+  
   :focus-visible{ outline:3px solid #93c5fd; outline-offset:2px }
   @media (max-width:640px){
     .post-cover{ height:220px }
@@ -134,40 +132,40 @@
 </head>
 <body>
 
-  <!-- Reutiliza tu mismo header/nav del index si lo tienes como include o copia y pega -->
+  
   <header class="site-header">
-    <!-- TODO: pega aquí el header/nav del index si no se inyecta automáticamente -->
+ 
   </header>
 
   <main class="container">
     <article class="post">
 
-      <!-- Portada (opcional) -->
+     
       <div class="post-cover">
-        <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
+      
         <img src="https://m4r104lb4.github.io/blog/en/p2/i0.jpg" alt="Portada del artículo" loading="lazy">
       </div>
 
-      <!-- Encabezado del post -->
+     
       <header class="post-header">
-        <h1>SOLVING XINTRA LABS (Beginner Level)</h1>
+        <h1>SOLVING THE XINTRA.ORG LABS (Beginner Level)</h1>
         <div class="post-meta">
           By <strong>Mario Alba</strong> ·
-          <time datetime="2026-02-18"><!-- TODO: fecha legible -->Feb. 18, 2026</time> ·
+          <time datetime="2026-02-17"><!-- TODO: fecha legible -->Feb. 17, 2026</time> ·
           <!-- TODO: lectura opcional -->~1 hr.
         </div>
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
 
-      <!-- Cuerpo del post (solo escribe; usa h2/h3, p, ul/ol, pre/code, figure) -->
+      
       <section class="post-body">
 
         <h2>Intro</h2>
         <p>This post describes how I manage to solve the beginner level challenges from <a href="https://www.xintra.org/">Xintra Labs</a>. This is not an exact write-up of the challenges, but it is more a technical chronicle of how I was discovering flags and investigating the cases.
 		</p>
 		<p>The post is divided in 2 sections:</p>
-		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine (Called JMP Machine) accessed via VPN. It is also used as a pivoting host to infect an AD (Active Directory) server with a ransomware and to compromise an SQL server. As source of evidence, I received a triaje and its parsed version of each host.</p>
-		<p>The second part explains how I was able to solve the KG Distribution lab. This is a lab that included 2 machines, a host and a server, where the evidence is a memory image of each one.</p>
+		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine (Called JMP Machine) accessed via VPN. It is also used as a pivoting host to infect an AD (Active Directory) server with a ransomware and to compromise an SQL server. As source of evidence, I received a triage and its parsed version of each host.</p>
+		<p>The second part explains how I was able to solve the KG Distribution lab. This is a lab that included 2 machines, a host and a server, where the evidence is a memory dump of each one.</p>
 		<p>The objective in both cases was to solve some questions through all the attack chain.</p>
 		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
 		
@@ -243,7 +241,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<p>It was a flag for my surprise.</p>
 		
-		<p>After that, I looked to the MFT of the DC, I was able to found the .lnk file associated to PTASpy, which seemed to be related to Azure attacks:</p>
+		<p>After that, I looked to the MFT of the AD, I was able to found the .lnk file associated to PTASpy, which seemed to be related to Azure attacks:</p>
 		
 		<p>Azure Active Directory Pass-Through Authentication Flaws</p>
 		
@@ -307,7 +305,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <figcaption>Figure 13 — Powershell ConsoleHost_History entries.</figcaption>
 		</figure>
 		
-		<p>After achieving a point where I was not finding more evidence I decided to move to the DC and investigate the questions related to the "Domain Dominance".</p>
+		<p>After achieving a point where I was not finding more evidence I decided to move to the AD and investigate the questions related to the "Domain Dominance".</p>
 				
 		<p>I started by investigating a Dll injection attack made to get credentials. After verifying the MFT I found the dll file PSTASpy.dll.</p>
 		
@@ -336,7 +334,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<p>After solving almost all the answers of the section "Initial Access via Entra ID" I moved again to a deeper investigation of the triages.</p>
 		
-		<p>There, in the DC server I was able to find all the answers related to the section "Accessing Volume Shadow Copies" with the execution of the following command:</p>
+		<p>There, in the AD server I was able to find all the answers related to the section "Accessing Volume Shadow Copies" with the execution of the following command:</p>
 		
 		<pre><code>vssadmin  create shadow /for=C:</code></pre>
 		
@@ -425,7 +423,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i25.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 25 — Unusual behavior of python process.</figcaption>
+		  <figcaption>Figure 25 — Cobalt Strike C2 config.</figcaption>
 		</figure>
 		
 		<p>And finally, after using a lot of hints, I was able to do finish the lab!</p>
@@ -446,9 +444,9 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<h3>Workstation Investigation</h3>
 		
-		<p>After reviewing the available sources of evidence, and the questions, I saw that I was going to answer some questions about the attack chain using only the memory image of both devices (The workstation and the server).</p>
+		<p>After reviewing the available sources of evidence, and the questions, I saw that I was going to answer some questions about the attack chain using only the memory dump of both devices (The workstation and the server).</p>
 		
-		<p>Inside the path of every host, I found 2 files, a Vmware configuration file and a memory snapshot:</p>
+		<p>Inside the path of every host, I found 2 files, a Vmware configuration file and a memory dump:</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i28.jpg" alt="Ilustración" loading="lazy"> 
@@ -530,7 +528,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i39.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 39 — Reflective DLL command execution.</figcaption>
+		  <figcaption>Figure 39 — Unusual process tree.</figcaption>
 		</figure>
 		
 		<p>After looking at the timelines I found again the presence of the service OfficeUPgrade.exe. The attacker created persistence by copying this file in the following path:</p>
