@@ -5,16 +5,16 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-  <!-- Título del navegador -->
+
   <title>SOLVING XINTRA LABS (BEGINNER LEVEL) | Written by Mario</title>
 
-  <!-- SEO básico -->
+
   <meta name="description" content="SOLVING XINTRA LABS (BEGINNER LEVEL)"/>
   <meta name="author" content="Mario Alba"/>
 
   
 <style>
-  /* === Variables de color y escala (ajústalas si quieres) === */
+
   :root{
     --bg: #0b1020;         /* fondo general (oscuro suave) */
     --surface: #0f172a;    /* superficie principal (tarjeta) */
@@ -29,7 +29,7 @@
     --max-w: 860px;        /* ancho del contenedor */
   }
 
-  /* === Reset mínimo y tipografía === */
+
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0; background:var(--bg); color:var(--text);
@@ -49,7 +49,7 @@
       linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
   }
 
-  /* === Portada (hero) === */
+
   .post-cover{
     overflow:hidden;
     height: clamp(200px, 36vw, 360px);
@@ -64,7 +64,7 @@
   /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
   .post-cover.contain img { object-fit: contain; background:transparent }
 
-  /* === Cabecera del post === */
+
   .post-header{ padding:18px 20px 8px }
   .post-header h1{
     margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
@@ -72,13 +72,12 @@
   .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
   .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
 
-  /* === Cuerpo del post === */
+
   .post-body{ padding:16px 20px 24px }
   .post-body p{ margin:.9em 0 }
   .post-body h2{ margin-top:28px; font-size:1.45rem }
   .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
 
-  /* === Imágenes responsivas y figuras === */
   .post-body img,
   figure img{
     max-width:100%;
@@ -94,10 +93,10 @@
   figure{ margin:18px 0 }
   figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
 
-  /* Imagen a ancho completo del contenedor del artículo */
+
   figure.bleed img{ width:100%; max-width:100% }
 
-  /* === Código === */
+
   pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
   pre{
     background:var(--code-bg); border:1px solid var(--border);
@@ -134,21 +133,19 @@
 </head>
 <body>
 
-  <!-- Reutiliza tu mismo header/nav del index si lo tienes como include o copia y pega -->
+
   <header class="site-header">
-    <!-- TODO: pega aquí el header/nav del index si no se inyecta automáticamente -->
   </header>
 
   <main class="container">
     <article class="post">
 
-      <!-- Portada (opcional) -->
+
       <div class="post-cover">
-        <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
         <img src="https://m4r104lb4.github.io/blog/en/p2/i0.jpg" alt="Portada del artículo" loading="lazy">
       </div>
 
-      <!-- Encabezado del post -->
+
       <header class="post-header">
         <h1>SOLVING XINTRA LABS (BEGINNER LEVEL)</h1>
         <div class="post-meta">
@@ -159,14 +156,14 @@
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
 
-      <!-- Cuerpo del post (solo escribe; usa h2/h3, p, ul/ol, pre/code, figure) -->
+
       <section class="post-body">
 
         <h2>Intro</h2>
         <p>This post describes how I manage to solve the beginner level challenges from <a href="https://www.xintra.org/">Xintra Labs</a>. This is not an exact writeup of the challenges but it is more a technical chronicle of how I was discovering and investigating the cases.
 		</p>
 		<p>The post is divided in 2 sections:</p>
-		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine accessed via VPN, which was also used as a pivoting host to infect an AD server with a ransomware and to compromise an SQL server. As source of evidence I received a triaje and its parsed version of each host.</p>
+		<p>The first part explains how I was able to solve the Waify University lab. This is a lab where 3 machines were compromised, including an initial machine (Called JMP Machine) accessed via VPN, which was also used as a pivoting host to infect an AD server with a ransomware and to compromise an SQL server. As source of evidence I received a triaje and its parsed version of each host.</p>
 		<p>The second part explains how I was able to solve the KG Distribution lab. This is a lab including 2 machines, a host and a server, where the evidence is a memory image of each one.</p>
 		<p>The objective in both cases was solving some questions trough all the attack chain.</p>
 		<h1 style="text-align: center; font-size: 50px;">Waifu University </h1>
@@ -177,18 +174,18 @@
 		</figure>
 		
         <h2>DAY 1</h2>
-        <p>The first day started by solving the questions related to the "Scoping of incident" without a great effort, then I started this lab by doing my own investivation of usual patterns of malicious activity in the DC, which seemed to be the most affected server by the threat actor.</p>
+        <p>The first day started when I solved the questions of the Section "Scoping of incident", then I started this lab by doing my own investivation of usual patterns of malicious activity in the DC, which seemed to be the most affected server by the threat actor.</p>
 		
 		<p>The first sign of an unusual behaviour was this:</p>
 		
-		<p>The attacker used vssadmin to eliminate the shadow copies via cmd. The attacker used the following account: WAIFU\CC-Admin at 2024-03-07 03:36:05.</p>
+		<p>The attacker used vssadmin to eliminate the shadow copies via cmd. Then they used the following account: WAIFU\CC-Admin at 2024-03-07 03:36:05.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i2.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 2 — Shadow copies activity from attacker.</figcaption>
 		</figure>
 		
-		<p>With one indicator (A compromised user) I was able to get this</p>
+		<p>With one indicator (A compromised user) I was able to get this:</p>
 		
 		<p>The first activity of the user CC-Admin seemed to be the creation of a file called print64.bat using Notepad at 2024-03-07 03:34:54. The path of this file was that one:</p>
 		
@@ -199,7 +196,7 @@
 		  <figcaption>Figure 3 — Actions performed by attacker before copying malicious script.</figcaption>
 		</figure>
 		
-		<p>After that, a powershell cli is spawned to execute the file print64.exe. At the same time the Powershell script executes the following commands:</p>
+		<p>After that, a powershell CLI was spawned to execute the file print64.exe. At the same time the Powershell script executed the following commands:</p>
 		
 		<pre><code>"C:\Windows\system32\cmd.exe" /c "wmic csproduct get UUID"
 "C:\Windows\system32\cmd.exe" /c "fsutil behavior set SymlinkEvaluation R2L:1"
@@ -221,7 +218,7 @@
 		  <figcaption>Figure 4 — Ransomware actions.</figcaption>
 		</figure>
 		
-		<p>After verifying the content of the script print64.bat, I noticed this file was just a command to execute print64.exe.</p>
+		<p>After verifying the content of the script print64.bat, I noticed this file was just a command to execute print64.exe with some parameters.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i5.jpg" alt="Ilustración" loading="lazy"> 
@@ -235,7 +232,7 @@ SHA1	|	CC166BC3EAA024AAC4A2CDC02174AE87FCF47E28
 SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 </code></pre>
 		
-		<p>With this info, I was able to respond the questions of the section "Release the Ransomware UwU".</p>
+		<p>With this info, I responded the questions of the section "Release the Ransomware".</p>
 		
 		<p>In this folder the following file was found:</p>
 		
@@ -252,7 +249,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <figcaption>Figure 6 — Unusual files related to PTSpy.</figcaption>
 		</figure>
 		
-		<p>Using the extension of the ransomware, I was ale to stablish that the encryption started at 2024-03-07 03:36:06 according to MFT Entries.</p>
+		<p>Using the extension of the ransomware, I knew that the encryption started at 2024-03-07 03:36:06 according to MFT Entries.</p>
 		
 		<p>In a time range close to the incident, the following logon events were shown with the user account WAIFY\CC-Admin:</p>
 		
@@ -270,11 +267,11 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <figcaption>Figure 8 — RDP sessions in the server CC-SQL-01.</figcaption>
 		</figure>
 		
-		<p>From there some files were created in the folder of this user, so after some time testing MFT Entry IDs and even verifying the Hint, I was able to find the second flag in this section.</p>
+		<p>From there some files were created in the folder of this user, so after some time testing MFT Entry IDs and even verifying the Hint of the question I was trying to solve, I was able to find the second flag in this section.</p>
 		
 		<p>Finally, I initiated the investigation of the Jump Machine.</p>
 		
-		<p>Starting with amcache to find some signs of suspicious activity, I was able to find a detection process of defender AV being with activity at 2024-03-06 08:21:32.</p>
+		<p>Starting with Amcache to find some signs of suspicious activity, I found a detection process of defender AV being with activity at 2024-03-06 08:21:32.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i9.jpg" alt="Ilustración" loading="lazy"> 
@@ -327,7 +324,7 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		
 		<h2>DAY 2</h2>
 		
-		<p>During my second day dedicated to the labs I started by investigating the M365 logs. I was able to identify multiple failed authentications from 8 different users, using AWS services. After that, the attacker accessed the network with the user ivanderplas1@waifu.phd from the IP address 207.246.70.192.</p>
+		<p>During my second day that I dedicated to the labs, I started by investigating the M365 logs. I identified multiple failed authentications from 8 different users, using AWS services. After that, the attacker accessed the network with the user ivanderplas1@waifu.phd from the IP address 207.246.70.192.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i16.jpg" alt="Ilustración" loading="lazy"> 
@@ -344,7 +341,6 @@ SHA256	|	ECEA6B772742758A2240898EF772CA11AA9D870AEC711CFFAB8994C23044117C
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i17.jpg" alt="Ilustración" loading="lazy"> 
 		  <figcaption>Figure 17 — Shadow copy deletion after rasomware execution.</figcaption>
 		</figure>
-		
 		
 		<p>It concluded the activities made, noticing that some of the questions were much more difficult for me.</p>
 		
@@ -493,7 +489,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 33 — Autorun persistence.</figcaption>
 		</figure>
 				
-		<p>Using the PID and the time of execution, I was able to find also the C2 of the attacker, the DLL libraries involved in the injection and the script created by the attacker appeared as an NTFS creation event.</p>
+		<p>Using the PID and the time of execution, I was able to find also the C2 of the attacker, the DLL libraries involved in the injection and the script created by the attacker appeared in the NTFS entries.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i34.jpg" alt="Ilustración" loading="lazy"> 
@@ -554,7 +550,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		  <figcaption>Figure 41 — Powershell command.</figcaption>
 		</figure>
 		
-		<p>I used the hints for some of the questions which told me to check the process dump. After reviewing the mini dump using the strings utility (I was unable to understand how the hell worked Windbg), I found that the framework used by the attacker C2 was SLIVER.</p>
+		<p>I used the hints for some of the questions which told me to check the process dump. After reviewing the mini dump using the strings.exe utility (I didn't understand how the hell worked Windbg), I found that the framework used by the attacker C2 was SLIVER.</p>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i42.jpg" alt="Ilustración" loading="lazy"> 
@@ -586,10 +582,10 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i46.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 46 — The most difficut question.</figcaption>
+		  <figcaption>Figure 46 — The most difficut question :(.</figcaption>
 		</figure>
 		
-		<p>I need to say that I used the writeup of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a  specific name of a service. Here is the reference of this guy:</p>
+		<p>I need to say that I used the writeup of bizarrebinaries as I understood the question more close to a technical mitre procedure and not a specific name of a service. Here is the reference of its blog:</p>
 		
 		<a href="url">https://www.bizarrebinaries.com/posts/xintra-kgdistribution/</a>
 		
@@ -626,7 +622,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		<h3>About me:</h3>
 		<div>
 			<ul>		
-				<li>Still hope to sharpen my skills as I really suffered solving some questions of the labs.</li>
+				<li>Still hope to sharpen my skills as I really suffered solving some questions of the labs and I am almost warming up for the difficult challenges.</li>
 			</ul>
 		</div>
 
