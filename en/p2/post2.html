@@ -5,16 +5,16 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-
+  <!-- Título del navegador -->
   <title>SOLVING XINTRA LABS (BEGINNER LEVEL) | Written by Mario</title>
 
-
+  <!-- SEO básico -->
   <meta name="description" content="SOLVING XINTRA LABS (BEGINNER LEVEL)"/>
   <meta name="author" content="Mario Alba"/>
 
   
 <style>
-
+  /* === Variables de color y escala (ajústalas si quieres) === */
   :root{
     --bg: #0b1020;         /* fondo general (oscuro suave) */
     --surface: #0f172a;    /* superficie principal (tarjeta) */
@@ -29,7 +29,7 @@
     --max-w: 860px;        /* ancho del contenedor */
   }
 
-
+  /* === Reset mínimo y tipografía === */
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0; background:var(--bg); color:var(--text);
@@ -49,7 +49,7 @@
       linear-gradient(180deg, rgba(139,92,246,.05), transparent 400px);
   }
 
-
+  /* === Portada (hero) === */
   .post-cover{
     overflow:hidden;
     height: clamp(200px, 36vw, 360px);
@@ -64,7 +64,7 @@
   /* Usa .post-cover.contain si NO quieres recorte (logos con texto, etc.) */
   .post-cover.contain img { object-fit: contain; background:transparent }
 
-
+  /* === Cabecera del post === */
   .post-header{ padding:18px 20px 8px }
   .post-header h1{
     margin:6px 0 8px; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height:1.2; letter-spacing:.1px
@@ -72,12 +72,13 @@
   .post-meta{ color:var(--muted); font-size:.95rem; margin-top:6px }
   .post-summary{ color:var(--text-soft); margin:10px 0 0; font-size:1.05rem }
 
-
+  /* === Cuerpo del post === */
   .post-body{ padding:16px 20px 24px }
   .post-body p{ margin:.9em 0 }
   .post-body h2{ margin-top:28px; font-size:1.45rem }
   .post-body h3{ margin-top:18px; font-size:1.15rem; color:var(--text-soft) }
 
+  /* === Imágenes responsivas y figuras === */
   .post-body img,
   figure img{
     max-width:100%;
@@ -93,10 +94,10 @@
   figure{ margin:18px 0 }
   figcaption{ font-size:.9rem; color:var(--muted); margin-top:6px }
 
-
+  /* Imagen a ancho completo del contenedor del artículo */
   figure.bleed img{ width:100%; max-width:100% }
 
-
+  /* === Código === */
   pre, code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
   pre{
     background:var(--code-bg); border:1px solid var(--border);
@@ -133,30 +134,32 @@
 </head>
 <body>
 
-
+  <!-- Reutiliza tu mismo header/nav del index si lo tienes como include o copia y pega -->
   <header class="site-header">
+    <!-- TODO: pega aquí el header/nav del index si no se inyecta automáticamente -->
   </header>
 
   <main class="container">
     <article class="post">
 
-
+      <!-- Portada (opcional) -->
       <div class="post-cover">
+        <!-- TODO: /blog/assets/portadas/mi-portada.jpg -->
         <img src="https://m4r104lb4.github.io/blog/en/p2/i0.jpg" alt="Portada del artículo" loading="lazy">
       </div>
 
-
+      <!-- Encabezado del post -->
       <header class="post-header">
         <h1>SOLVING XINTRA LABS (BEGINNER LEVEL)</h1>
         <div class="post-meta">
           By <strong>Mario Alba</strong> ·
           <time datetime="2026-01-30"><!-- TODO: fecha legible -->Feb. 13, 2026</time> ·
-          <!-- TODO: lectura opcional -->~40 min.
+          <!-- TODO: lectura opcional -->~15 min.
         </div>
         <p class="post-summary"><!-- TODO: subtítulo / resumen de 1–2 líneas --></p>
       </header>
 
-
+      <!-- Cuerpo del post (solo escribe; usa h2/h3, p, ul/ol, pre/code, figure) -->
       <section class="post-body">
 
         <h2>Intro</h2>
@@ -449,7 +452,7 @@ Cmdline: findstr /i "auto"</code></pre>
 		
 		<figure>
 		  <img src="https://m4r104lb4.github.io/blog/en/p2/i28.jpg" alt="Ilustración" loading="lazy"> 
-		  <figcaption>Figure 28 — Evidence Files for workstation.</figcaption>
+		  <figcaption>Figure 28 — Evidence Files example.</figcaption>
 		</figure>
 		
 		<p>Starting with the most basic command I was able to mount the Image as a partition using MemProcFS.</p>
@@ -631,6 +634,9 @@ Cmdline: findstr /i "auto"</code></pre>
         <span class="tag">DFIR</span>
         <span class="tag">XINTRA</span>
         <span class="tag">INCIDENT RESPONSE</span>
+		<span class="tag">MEMORY FORENSICS</span>
+		<span class="tag">TRIAGE ANALYSIS</span>
+		<span class="tag">DIGITAL FORENSICS</span>
       </div>
       <!-- Navegación simple -->
       <nav class="post-footer">
